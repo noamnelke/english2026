@@ -49,3 +49,34 @@ test('a failed preload can retry without an unhandled rejection or blocking prac
   assert.equal(attempts, 2);
   await Promise.resolve();
 });
+
+test('answer thumbnails keep only the current four and next four, promoting the prepared next set', () => {
+  const created = [];
+  const prepare = createImagePreloader(() => {
+    const image = { decode: () => Promise.resolve() };
+    created.push(image);
+    return image;
+  }, { limit: 8 });
+  prepare(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'unused'], 4);
+  assert.equal(created.length, 8);
+  assert.deepEqual(created.map(i => i.fetchPriority), ['high', 'high', 'high', 'high', 'low', 'low', 'low', 'low']);
+  const next = created.slice(4);
+  prepare(['e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'], 4);
+  assert.equal(created.length, 12, 'advancing fetches only the new lookahead set');
+  assert.ok(next.every(i => i.fetchPriority === 'high'));
+  prepare(['e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'], 4);
+  assert.equal(created.length, 12, 'retry/reveal does not refetch the answer set');
+});
+
+test('two meanings sharing one illustration keep separate DOM images, and both survive a reveal', () => {
+  const { prepare, created } = setup();
+  const requests = [{ key: 'dog', src: 'dog.webp' }, { key: 'pet', src: 'dog.webp' }];
+  prepare(requests, 2);
+  assert.equal(created.length, 2);
+  assert.notEqual(prepare.get('dog'), prepare.get('pet'), 'one button must not steal another button image');
+  const dog = prepare.get('dog'), pet = prepare.get('pet');
+  prepare(requests, 2);
+  assert.equal(prepare.get('dog'), dog);
+  assert.equal(prepare.get('pet'), pet);
+  assert.equal(created.length, 2);
+});

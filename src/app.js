@@ -1,9 +1,11 @@
-import { visualsForAnswers } from './answer-visuals.js';
+import { planAnswerWindow } from './answer-visuals.js';
 import { createImagePreloader } from './preload.js';
-import { STORAGE_KEY, blankProgress, sanitizeProgress, topicStats, itemProgress, startSession, answerQuestion, advanceSession, choicesFor } from './engine.js';
+import { STORAGE_KEY, blankProgress, sanitizeProgress, topicStats, itemProgress, startSession, answerQuestion, advanceSession } from './engine.js';
 
 const app = document.querySelector('#app');
 const prepareImages = createImagePreloader();
+const prepareAnswerImages = createImagePreloader(undefined, { limit: 8 });
+let answerPlans = new Map();
 let topics, progress, session = null, choices = [], filter = 'all', saveFailed = false;
 const icons = {
   star: '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>',
@@ -17,6 +19,7 @@ const icons = {
 const icon = (name, cls = '') => `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]}</svg>`;
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const asset = key => `./images/${encodeURIComponent(key)}.webp`;
+const thumbnail = key => `./thumbnails/${encodeURIComponent(key)}.webp`;
 const topic = () => topics.find(t => t.id === session.topicId);
 const current = () => topic().items.find(q => q.id === session.queue[session.index]);
 
@@ -37,6 +40,8 @@ function goHome() { session = null; save(); renderHome(); window.scrollTo(0, 0);
 
 function renderHome() {
   prepareImages([]);
+  prepareAnswerImages([]);
+  answerPlans.clear();
   const stats = topics.map(t => topicStats(t, progress));
   const completed = stats.filter(s => s.complete).length;
   const pending = stats.reduce((sum, s) => sum + s.pending.length, 0);
@@ -62,7 +67,7 @@ function topicCard(t) {
 }
 function begin(id) {
   session = startSession(topics.find(t => t.id === id), progress);
-  choices = choicesFor(current(), topic(), topics);
+  answerPlans.clear();
   renderQuestion(); window.scrollTo(0, 0);
 }
 function highlightedExample(q) {
@@ -79,7 +84,16 @@ function renderQuestion(focusHeading = false) {
   const review = session.mode === 'review';
   const nextQuestion = t.items.find(item => item.id === session.queue[session.index + 1]);
   const illustration = prepareImages([asset(q.asset), nextQuestion && asset(nextQuestion.asset)]);
-  const answerVisuals = visualsForAnswers(q, choices, t, topics);
+  answerPlans = planAnswerWindow(session.queue.slice(session.index, session.index + 2), t, topics, answerPlans);
+  const plan = answerPlans.get(q.id);
+  choices = plan.choices;
+  const answerVisuals = plan.visuals;
+  const thumbnailRequests = plan => plan.visuals.map((v, i) => v?.type === 'image' ? {
+    key: JSON.stringify([thumbnail(v.asset), plan.choices[i]]), src: thumbnail(v.asset),
+  } : null);
+  const currentThumbnails = thumbnailRequests(plan);
+  const nextThumbnails = nextQuestion ? thumbnailRequests(answerPlans.get(nextQuestion.id)) : [];
+  prepareAnswerImages([...currentThumbnails, ...nextThumbnails], currentThumbnails.filter(Boolean).length);
   const progressPercent = review ? t.items.filter(x => itemProgress(progress, x.id).seen && !itemProgress(progress, x.id).debt).length / t.items.length * 100 : session.index / session.queue.length * 100;
   app.innerHTML = `${header(true)}<main id="main" class="practice" tabindex="-1">${saveNotice()}<div class="practice-heading"><div><span class="eyebrow">${review ? 'מחזקים את מה שעוד קשה' : 'לומדים ומגלים'}</span><h1>${esc(t.he)}</h1></div><span class="round-label">${review ? `סבב חיזוק · ${session.index + 1} מתוך ${session.queue.length}` : `שאלה ${session.index + 1} מתוך ${session.queue.length}`}</span></div><div class="session-progress" role="progressbar" aria-label="התקדמות בנושא" aria-valuenow="${Math.round(progressPercent)}" aria-valuemin="0" aria-valuemax="100"><span style="width:${progressPercent}%"></span></div>
   <div class="question-layout"><section class="question-panel" aria-labelledby="question-word"><div class="question-label">${q.word === 'play' ? 'מה פירוש המילה המודגשת במשפט?' : 'מה הפירוש בעברית?'}</div><h2 id="question-word" tabindex="-1" lang="en" dir="ltr">${esc(q.word)}</h2>${q.example ? `<p class="example" lang="en" dir="ltr">${highlightedExample(q)}</p>` : ''}<div class="mastery-slot">${p.debt ? `<div class="mastery"><span>מנקים את השאלה</span><div class="mastery-dots" aria-label="${p.streak} מתוך 3 תשובות נכונות בניסיון הראשון">${[1, 2, 3].map(n => `<span class="${p.streak >= n ? 'filled' : ''}">${p.streak >= n ? icon('check') : n}</span>`).join('')}</div><small>3 הצלחות בניסיון הראשון · טעות מתחילה מחדש</small></div>` : review && session.done ? `<div class="cleaned">${icon('check')} השאלה נקייה! כל הכבוד</div>` : ''}</div>
@@ -87,7 +101,7 @@ function renderQuestion(focusHeading = false) {
     const wrong = session.wrong.includes(meaning), right = session.done && meaning === q.meaning;
     const visual = answerVisuals[i];
     const key = `<span class="answer-key">${right ? icon('check') : wrong ? icon('close') : i + 1}</span>`;
-    const leading = visual ? `<span class="answer-leading">${visual.type === 'color' ? `<span class="answer-swatch" style="--answer-color:${visual.color}" aria-hidden="true"></span>` : `<img class="answer-thumbnail" src="./thumbnails/${encodeURIComponent(visual.asset)}.webp" width="104" height="104" alt="" decoding="async" fetchpriority="low">`}${key}</span>` : key;
+    const leading = visual ? `<span class="answer-leading">${visual.type === 'color' ? `<span class="answer-swatch" style="--answer-color:${visual.color}" aria-hidden="true"></span>` : `<span data-answer-image="${i}"></span>`}${key}</span>` : key;
     return `<button class="answer ${visual ? 'has-visual' : ''} ${wrong ? 'wrong' : ''} ${right ? 'right' : ''}" data-answer="${i}" ${session.done || wrong ? 'disabled' : ''}>${leading}<span class="answer-label">${esc(meaning)}</span></button>`;
   }).join('')}</div><div class="feedback ${session.result || ''}" role="status" aria-live="polite">${feedback(q)}</div><div class="question-actions">${session.done ? `<button class="button primary next">${nextLabel()} ${icon('arrow')}</button>` : '<span class="keyboard-hint">בוחרים תשובה אחת · אפשר גם במקשים 1–4</span>'}<span class="session-stars">${icon('star')} ${session.stars} כוכבים בתרגול</span></div></section>
   <aside class="illustration-panel ${session.reveal ? 'revealed' : ''}" aria-label="איור המילה">${session.reveal ? `<span class="illustration-label">עכשיו גם רואים את זה</span><span data-question-image></span><div class="image-caption">${session.done ? `<strong lang="en" dir="ltr">${esc(q.word)}</strong><span>${esc(q.meaning)}</span>` : 'התמונה יכולה לעזור. עוד ניסיון?'}</div>` : `<div class="hidden-art">${icon('question')}<h3>קודם חושבים,<br>אחר כך מגלים.</h3><p>האיור יופיע אחרי<br>שתבחרו תשובה.</p><span class="secret-spark">✦</span></div>`}</aside></div><div class="practice-footnote">${review ? `${topicStats(t, progress).pending.length} שאלות עדיין מחכות לניקוי · אפשר לשמור ולצאת בכל רגע` : 'טעות היא הזדמנות ללמוד. יש שני ניסיונות בכל שאלה.'}</div></main>`;
@@ -97,6 +111,14 @@ function renderQuestion(focusHeading = false) {
     illustration.alt = `איור של ${q.word}`;
     app.querySelector('[data-question-image]').replaceWith(illustration);
   }
+  currentThumbnails.forEach((request, index) => {
+    if (!request) return;
+    const image = prepareAnswerImages.get(request.key);
+    image.className = 'answer-thumbnail';
+    image.alt = '';
+    image.width = image.height = 104;
+    app.querySelector(`[data-answer-image="${index}"]`).replaceWith(image);
+  });
   app.querySelectorAll('[data-answer]').forEach(button => button.addEventListener('click', () => choose(Number(button.dataset.answer))));
   app.querySelector('.next')?.addEventListener('click', next);
   if (focusHeading) app.querySelector('#question-word').focus({ preventScroll: true });
@@ -121,9 +143,11 @@ function next() {
   advanceSession(session);
   save();
   if (session.finished) renderSummary();
-  else { choices = choicesFor(current(), topic(), topics); renderQuestion(true); window.scrollTo(0, 0); }
+  else { renderQuestion(true); window.scrollTo(0, 0); }
 }
 function renderSummary() {
+  prepareAnswerImages([]);
+  answerPlans.clear();
   const t = topic(), s = topicStats(t, progress), review = session.mode === 'review';
   const needsReview = !review && s.pending.length > 0;
   const following = topics[topics.indexOf(t) + 1];

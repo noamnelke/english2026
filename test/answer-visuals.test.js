@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
-import { visualsForAnswers, COLOR_SWATCHES } from '../src/answer-visuals.js';
+import { visualsForAnswers, COLOR_SWATCHES, planAnswerWindow } from '../src/answer-visuals.js';
 import { choicesFor } from '../src/engine.js';
 const topics = JSON.parse(readFileSync(new URL('../src/data.json', import.meta.url)));
 
@@ -37,4 +37,23 @@ test('literal answers have real small assets; grammar and phrases do not get mis
       }
     }
   }
+});
+
+test('the next question keeps its prefetched choices and visuals across reveal and advancement', () => {
+  const topic = topics.find(t => t.id === 'topic-07');
+  const ids = topic.items.map(q => q.id);
+  let randomCalls = 0;
+  const random = () => { randomCalls++; return .7; };
+  const first = planAnswerWindow(ids, topic, topics, undefined, random);
+  assert.equal(first.size, 2, 'never plan the whole topic');
+  const preparedNext = first.get(ids[1]);
+  const calls = randomCalls;
+  const revealed = planAnswerWindow(ids, topic, topics, first, random);
+  assert.equal(randomCalls, calls, 'revealing an answer must not reshuffle choices');
+  assert.equal(revealed.get(ids[0]), first.get(ids[0]));
+  const advanced = planAnswerWindow(ids.slice(1), topic, topics, revealed, random);
+  assert.equal(advanced.get(ids[1]), preparedNext);
+  assert.equal(advanced.size, 2);
+  assert.equal(advanced.has(ids[0]), false);
+  assert.deepEqual(preparedNext.visuals, visualsForAnswers(topic.items[1], preparedNext.choices, topic, topics));
 });

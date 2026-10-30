@@ -31,11 +31,11 @@ npm test
 
 ## Structure
 
-- `src/preload.js`: a two-image rolling preload/decode pool; the revealed image reuses the prepared element.
+- `src/preload.js`: bounded preload/decode pools for two main illustrations and up to eight answer thumbnails. Current assets have high priority; the next question loads in the background.
 - `src/engine.js`: independently tested practice and mastery rules.
 - `src/app.js`, `src/style.css`: accessible, responsive RTL interface.
 - `src/data.json`: booklet vocabulary, translations, examples, focus terms, stable question IDs.
-- `public/thumbnails/`: small answer illustrations for literal vocabulary; color choices use outlined paint swatches. Grammar and conversation answers retain text to avoid ambiguous illustrations.
+- `public/thumbnails/`: small answer illustrations for literal vocabulary, shown opposite the label with a slight raised sticker effect; color choices use outlined paint swatches. Grammar and conversation answers retain text to avoid ambiguous illustrations.
 - `public/images/`: 171 WebP illustrations exported from the generated booklet art.
 - `scripts/`: static build and local HTTP preview, using Node standard modules.
 - `.openai/hosting.json`: Sites hosting identity and static output configuration.
