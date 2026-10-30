@@ -1,0 +1,13 @@
+{
+  "name": "english2026",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Illustrated English practice for grade 4, with Hebrew guidance and persistent mastery tracking.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=22" }
+}

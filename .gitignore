@@ -1,0 +1,10 @@
+dist/
+node_modules/
+.DS_Store
+.sites-local/
+.site-workflow/
+.sites-runtime/
+.sites-checkout/
+.sites-checkout-*/
+test-results/
+*.tar.gz

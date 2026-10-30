@@ -1,0 +1,2153 @@
+[
+  {
+    "he": "אנשים ומשפחה",
+    "en": "People and family",
+    "items": [
+      {
+        "word": "boy",
+        "meaning": "ילד",
+        "asset": "head",
+        "example": "He is a boy.",
+        "focus": [
+          "boy"
+        ],
+        "id": "topic-01-01"
+      },
+      {
+        "word": "girl",
+        "meaning": "ילדה",
+        "asset": "girl",
+        "example": "She is a girl.",
+        "focus": [
+          "girl"
+        ],
+        "id": "topic-01-02"
+      },
+      {
+        "word": "mom",
+        "meaning": "אמא",
+        "asset": "mom",
+        "example": "",
+        "focus": [],
+        "id": "topic-01-03"
+      },
+      {
+        "word": "dad",
+        "meaning": "אבא",
+        "asset": "dad",
+        "example": "",
+        "focus": [],
+        "id": "topic-01-04"
+      },
+      {
+        "word": "baby",
+        "meaning": "תינוק",
+        "asset": "baby",
+        "example": "",
+        "focus": [],
+        "id": "topic-01-05"
+      },
+      {
+        "word": "man",
+        "meaning": "גבר",
+        "asset": "man",
+        "example": "",
+        "focus": [],
+        "id": "topic-01-06"
+      },
+      {
+        "word": "woman",
+        "meaning": "אישה",
+        "asset": "woman",
+        "example": "",
+        "focus": [],
+        "id": "topic-01-07"
+      },
+      {
+        "word": "sister",
+        "meaning": "אחות",
+        "asset": "sister",
+        "example": "",
+        "focus": [],
+        "id": "topic-01-08"
+      },
+      {
+        "word": "brother",
+        "meaning": "אח",
+        "asset": "brother",
+        "example": "",
+        "focus": [],
+        "id": "topic-01-09"
+      },
+      {
+        "word": "grandma",
+        "meaning": "סבתא",
+        "asset": "grandma",
+        "example": "",
+        "focus": [],
+        "id": "topic-01-10"
+      },
+      {
+        "word": "grandpa",
+        "meaning": "סבא",
+        "asset": "grandpa",
+        "example": "",
+        "focus": [],
+        "id": "topic-01-11"
+      },
+      {
+        "word": "family",
+        "meaning": "משפחה",
+        "asset": "family",
+        "example": "",
+        "focus": [],
+        "id": "topic-01-12"
+      },
+      {
+        "word": "kid",
+        "meaning": "ילד",
+        "asset": "head",
+        "example": "He is a kid.",
+        "focus": [
+          "kid"
+        ],
+        "id": "topic-01-13"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-01"
+  },
+  {
+    "he": "בבית",
+    "en": "At home",
+    "items": [
+      {
+        "word": "house",
+        "meaning": "בית",
+        "asset": "house",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-01"
+      },
+      {
+        "word": "bed",
+        "meaning": "מיטה",
+        "asset": "bed",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-02"
+      },
+      {
+        "word": "table",
+        "meaning": "שולחן",
+        "asset": "table",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-03"
+      },
+      {
+        "word": "picture",
+        "meaning": "תמונה",
+        "asset": "picture",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-04"
+      },
+      {
+        "word": "sofa",
+        "meaning": "ספה",
+        "asset": "sofa",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-05"
+      },
+      {
+        "word": "living room",
+        "meaning": "סלון",
+        "asset": "living_room",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-06"
+      },
+      {
+        "word": "lamp",
+        "meaning": "מנורה",
+        "asset": "lamp",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-07"
+      },
+      {
+        "word": "mat",
+        "meaning": "שטיח קטן",
+        "asset": "mat",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-08"
+      },
+      {
+        "word": "floor",
+        "meaning": "רצפה",
+        "asset": "floor",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-09"
+      },
+      {
+        "word": "garden",
+        "meaning": "גינה",
+        "asset": "garden",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-10"
+      },
+      {
+        "word": "kitchen",
+        "meaning": "מטבח",
+        "asset": "kitchen",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-11"
+      },
+      {
+        "word": "window",
+        "meaning": "חלון",
+        "asset": "window",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-12"
+      },
+      {
+        "word": "door",
+        "meaning": "דלת",
+        "asset": "door",
+        "example": "",
+        "focus": [],
+        "id": "topic-02-13"
+      },
+      {
+        "word": "at home",
+        "meaning": "בבית",
+        "asset": "living_room",
+        "example": "I am at home.",
+        "focus": [
+          "at home"
+        ],
+        "id": "topic-02-14"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-02"
+  },
+  {
+    "he": "איברי גוף",
+    "en": "Body parts",
+    "items": [
+      {
+        "word": "nose",
+        "meaning": "אף",
+        "asset": "nose",
+        "example": "",
+        "focus": [],
+        "id": "topic-03-01"
+      },
+      {
+        "word": "mouth",
+        "meaning": "פה",
+        "asset": "mouth",
+        "example": "",
+        "focus": [],
+        "id": "topic-03-02"
+      },
+      {
+        "word": "hand",
+        "meaning": "יד",
+        "asset": "hand",
+        "example": "",
+        "focus": [],
+        "id": "topic-03-03"
+      },
+      {
+        "word": "leg",
+        "meaning": "רגל",
+        "asset": "leg",
+        "example": "",
+        "focus": [],
+        "id": "topic-03-04"
+      },
+      {
+        "word": "foot",
+        "meaning": "כף רגל",
+        "asset": "foot",
+        "example": "",
+        "focus": [],
+        "id": "topic-03-05"
+      },
+      {
+        "word": "eyes",
+        "meaning": "עיניים",
+        "asset": "eyes",
+        "example": "",
+        "focus": [],
+        "id": "topic-03-06"
+      },
+      {
+        "word": "ears",
+        "meaning": "אוזניים",
+        "asset": "ears",
+        "example": "",
+        "focus": [],
+        "id": "topic-03-07"
+      },
+      {
+        "word": "head",
+        "meaning": "ראש",
+        "asset": "head",
+        "example": "My head.",
+        "focus": [
+          "head"
+        ],
+        "id": "topic-03-08"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-03"
+  },
+  {
+    "he": "צבעים",
+    "en": "Colors",
+    "items": [
+      {
+        "word": "black",
+        "meaning": "שחור",
+        "asset": "black",
+        "example": "",
+        "focus": [],
+        "id": "topic-04-01"
+      },
+      {
+        "word": "white",
+        "meaning": "לבן",
+        "asset": "white",
+        "example": "",
+        "focus": [],
+        "id": "topic-04-02"
+      },
+      {
+        "word": "gray",
+        "meaning": "אפור",
+        "asset": "gray",
+        "example": "",
+        "focus": [],
+        "id": "topic-04-03"
+      },
+      {
+        "word": "red",
+        "meaning": "אדום",
+        "asset": "red",
+        "example": "",
+        "focus": [],
+        "id": "topic-04-04"
+      },
+      {
+        "word": "blue",
+        "meaning": "כחול",
+        "asset": "blue",
+        "example": "",
+        "focus": [],
+        "id": "topic-04-05"
+      },
+      {
+        "word": "green",
+        "meaning": "ירוק",
+        "asset": "green",
+        "example": "",
+        "focus": [],
+        "id": "topic-04-06"
+      },
+      {
+        "word": "yellow",
+        "meaning": "צהוב",
+        "asset": "yellow",
+        "example": "",
+        "focus": [],
+        "id": "topic-04-07"
+      },
+      {
+        "word": "orange",
+        "meaning": "כתום",
+        "asset": "orange",
+        "example": "",
+        "focus": [],
+        "id": "topic-04-08"
+      },
+      {
+        "word": "brown",
+        "meaning": "חום",
+        "asset": "brown",
+        "example": "",
+        "focus": [],
+        "id": "topic-04-09"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-04"
+  },
+  {
+    "he": "אוכל ושתייה",
+    "en": "Food and drink",
+    "items": [
+      {
+        "word": "apple",
+        "meaning": "תפוח",
+        "asset": "apple",
+        "example": "",
+        "focus": [],
+        "id": "topic-05-01"
+      },
+      {
+        "word": "egg",
+        "meaning": "ביצה",
+        "asset": "egg",
+        "example": "",
+        "focus": [],
+        "id": "topic-05-02"
+      },
+      {
+        "word": "milk",
+        "meaning": "חלב",
+        "asset": "milk",
+        "example": "",
+        "focus": [],
+        "id": "topic-05-03"
+      },
+      {
+        "word": "carrot",
+        "meaning": "גזר",
+        "asset": "carrot",
+        "example": "",
+        "focus": [],
+        "id": "topic-05-04"
+      },
+      {
+        "word": "lunch",
+        "meaning": "ארוחת צהריים",
+        "asset": "lunch",
+        "example": "This is my lunch.",
+        "focus": [
+          "lunch"
+        ],
+        "id": "topic-05-05"
+      },
+      {
+        "word": "juice",
+        "meaning": "מיץ",
+        "asset": "juice",
+        "example": "",
+        "focus": [],
+        "id": "topic-05-06"
+      },
+      {
+        "word": "cookie",
+        "meaning": "עוגייה",
+        "asset": "cookie",
+        "example": "",
+        "focus": [],
+        "id": "topic-05-07"
+      },
+      {
+        "word": "chicken",
+        "meaning": "עוף למאכל",
+        "asset": "chicken",
+        "example": "",
+        "focus": [],
+        "id": "topic-05-08"
+      },
+      {
+        "word": "ice cream",
+        "meaning": "גלידה",
+        "asset": "ice_cream",
+        "example": "",
+        "focus": [],
+        "id": "topic-05-09"
+      },
+      {
+        "word": "candy",
+        "meaning": "ממתק",
+        "asset": "candy",
+        "example": "",
+        "focus": [],
+        "id": "topic-05-10"
+      },
+      {
+        "word": "cake",
+        "meaning": "עוגה",
+        "asset": "cake",
+        "example": "",
+        "focus": [],
+        "id": "topic-05-11"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-05"
+  },
+  {
+    "he": "מספרים",
+    "en": "Numbers",
+    "items": [
+      {
+        "word": "zero",
+        "meaning": "אפס",
+        "asset": "num_0",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-01"
+      },
+      {
+        "word": "one",
+        "meaning": "אחד",
+        "asset": "num_1",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-02"
+      },
+      {
+        "word": "two",
+        "meaning": "שתיים",
+        "asset": "num_2",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-03"
+      },
+      {
+        "word": "three",
+        "meaning": "שלוש",
+        "asset": "num_3",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-04"
+      },
+      {
+        "word": "four",
+        "meaning": "ארבע",
+        "asset": "num_4",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-05"
+      },
+      {
+        "word": "five",
+        "meaning": "חמש",
+        "asset": "num_5",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-06"
+      },
+      {
+        "word": "six",
+        "meaning": "שש",
+        "asset": "num_6",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-07"
+      },
+      {
+        "word": "seven",
+        "meaning": "שבע",
+        "asset": "num_7",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-08"
+      },
+      {
+        "word": "eight",
+        "meaning": "שמונה",
+        "asset": "num_8",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-09"
+      },
+      {
+        "word": "nine",
+        "meaning": "תשע",
+        "asset": "num_9",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-10"
+      },
+      {
+        "word": "ten",
+        "meaning": "עשר",
+        "asset": "num_10",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-11"
+      },
+      {
+        "word": "eleven",
+        "meaning": "אחת עשרה",
+        "asset": "num_11",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-12"
+      },
+      {
+        "word": "twelve",
+        "meaning": "שתים עשרה",
+        "asset": "num_12",
+        "example": "",
+        "focus": [],
+        "id": "topic-06-13"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-06"
+  },
+  {
+    "he": "בעלי חיים",
+    "en": "Animals",
+    "items": [
+      {
+        "word": "dog",
+        "meaning": "כלב",
+        "asset": "dog",
+        "example": "",
+        "focus": [],
+        "id": "topic-07-01"
+      },
+      {
+        "word": "cat",
+        "meaning": "חתול",
+        "asset": "cat",
+        "example": "",
+        "focus": [],
+        "id": "topic-07-02"
+      },
+      {
+        "word": "duck",
+        "meaning": "ברווז",
+        "asset": "duck",
+        "example": "",
+        "focus": [],
+        "id": "topic-07-03"
+      },
+      {
+        "word": "hen",
+        "meaning": "תרנגולת",
+        "asset": "hen",
+        "example": "",
+        "focus": [],
+        "id": "topic-07-04"
+      },
+      {
+        "word": "horse",
+        "meaning": "סוס",
+        "asset": "horse",
+        "example": "",
+        "focus": [],
+        "id": "topic-07-05"
+      },
+      {
+        "word": "rabbit",
+        "meaning": "ארנב",
+        "asset": "rabbit",
+        "example": "",
+        "focus": [],
+        "id": "topic-07-06"
+      },
+      {
+        "word": "elephant",
+        "meaning": "פיל",
+        "asset": "elephant",
+        "example": "",
+        "focus": [],
+        "id": "topic-07-07"
+      },
+      {
+        "word": "mouse",
+        "meaning": "עכבר",
+        "asset": "mouse",
+        "example": "",
+        "focus": [],
+        "id": "topic-07-08"
+      },
+      {
+        "word": "sheep",
+        "meaning": "כבשה",
+        "asset": "sheep",
+        "example": "",
+        "focus": [],
+        "id": "topic-07-09"
+      },
+      {
+        "word": "cow",
+        "meaning": "פרה",
+        "asset": "cow",
+        "example": "",
+        "focus": [],
+        "id": "topic-07-10"
+      },
+      {
+        "word": "fish",
+        "meaning": "דג או דגים",
+        "asset": "fish",
+        "example": "",
+        "focus": [],
+        "id": "topic-07-11"
+      },
+      {
+        "word": "pet",
+        "meaning": "חיית מחמד",
+        "asset": "dog",
+        "example": "I have a pet.",
+        "focus": [
+          "pet"
+        ],
+        "id": "topic-07-12"
+      },
+      {
+        "word": "monkey",
+        "meaning": "קוף",
+        "asset": "monkey",
+        "example": "",
+        "focus": [],
+        "id": "topic-07-13"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-07"
+  },
+  {
+    "he": "בחוץ ובטבע",
+    "en": "Outdoors and nature",
+    "items": [
+      {
+        "word": "car",
+        "meaning": "מכונית",
+        "asset": "car",
+        "example": "",
+        "focus": [],
+        "id": "topic-08-01"
+      },
+      {
+        "word": "tree",
+        "meaning": "עץ",
+        "asset": "tree",
+        "example": "",
+        "focus": [],
+        "id": "topic-08-02"
+      },
+      {
+        "word": "water",
+        "meaning": "מים",
+        "asset": "water",
+        "example": "",
+        "focus": [],
+        "id": "topic-08-03"
+      },
+      {
+        "word": "umbrella",
+        "meaning": "מטרייה",
+        "asset": "umbrella",
+        "example": "",
+        "focus": [],
+        "id": "topic-08-04"
+      },
+      {
+        "word": "van",
+        "meaning": "מכונית מסחרית",
+        "asset": "van",
+        "example": "",
+        "focus": [],
+        "id": "topic-08-05"
+      },
+      {
+        "word": "sun",
+        "meaning": "שמש",
+        "asset": "sun",
+        "example": "",
+        "focus": [],
+        "id": "topic-08-06"
+      },
+      {
+        "word": "farm",
+        "meaning": "חווה",
+        "asset": "farm",
+        "example": "",
+        "focus": [],
+        "id": "topic-08-07"
+      },
+      {
+        "word": "zoo",
+        "meaning": "גן חיות",
+        "asset": "zoo",
+        "example": "",
+        "focus": [],
+        "id": "topic-08-08"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-08"
+  },
+  {
+    "he": "בבית הספר",
+    "en": "At school",
+    "items": [
+      {
+        "word": "bag",
+        "meaning": "תיק",
+        "asset": "bag",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-01"
+      },
+      {
+        "word": "book",
+        "meaning": "ספר",
+        "asset": "book",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-02"
+      },
+      {
+        "word": "pupil",
+        "meaning": "תלמיד",
+        "asset": "pupil",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-03"
+      },
+      {
+        "word": "eraser",
+        "meaning": "מחק",
+        "asset": "eraser",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-04"
+      },
+      {
+        "word": "chair",
+        "meaning": "כיסא",
+        "asset": "chair",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-05"
+      },
+      {
+        "word": "notebook",
+        "meaning": "מחברת",
+        "asset": "notebook",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-06"
+      },
+      {
+        "word": "pencil",
+        "meaning": "עיפרון",
+        "asset": "pencil",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-07"
+      },
+      {
+        "word": "test",
+        "meaning": "מבחן",
+        "asset": "test",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-08"
+      },
+      {
+        "word": "teacher",
+        "meaning": "מורה",
+        "asset": "teacher",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-09"
+      },
+      {
+        "word": "pen",
+        "meaning": "עט",
+        "asset": "pen",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-10"
+      },
+      {
+        "word": "pencil case",
+        "meaning": "קלמר",
+        "asset": "pencil_case",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-11"
+      },
+      {
+        "word": "school",
+        "meaning": "בית ספר",
+        "asset": "school",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-12"
+      },
+      {
+        "word": "plus",
+        "meaning": "ועוד בחשבון",
+        "asset": "plus",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-13"
+      },
+      {
+        "word": "computer",
+        "meaning": "מחשב",
+        "asset": "computer",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-14"
+      },
+      {
+        "word": "desk",
+        "meaning": "שולחן כתיבה",
+        "asset": "desk",
+        "example": "",
+        "focus": [],
+        "id": "topic-09-15"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-09"
+  },
+  {
+    "he": "אנשים חפצים ומשחקים",
+    "en": "People objects and games",
+    "items": [
+      {
+        "word": "box",
+        "meaning": "קופסה",
+        "asset": "box",
+        "example": "",
+        "focus": [],
+        "id": "topic-10-01"
+      },
+      {
+        "word": "hat",
+        "meaning": "כובע",
+        "asset": "hat",
+        "example": "",
+        "focus": [],
+        "id": "topic-10-02"
+      },
+      {
+        "word": "king",
+        "meaning": "מלך",
+        "asset": "king",
+        "example": "",
+        "focus": [],
+        "id": "topic-10-03"
+      },
+      {
+        "word": "queen",
+        "meaning": "מלכה",
+        "asset": "queen",
+        "example": "",
+        "focus": [],
+        "id": "topic-10-04"
+      },
+      {
+        "word": "ball",
+        "meaning": "כדור",
+        "asset": "ball",
+        "example": "",
+        "focus": [],
+        "id": "topic-10-05"
+      },
+      {
+        "word": "friend",
+        "meaning": "חבר",
+        "asset": "friend",
+        "example": "He is my friend.",
+        "focus": [
+          "friend"
+        ],
+        "id": "topic-10-06"
+      },
+      {
+        "word": "job",
+        "meaning": "עבודה",
+        "asset": "job",
+        "example": "He has a job.",
+        "focus": [
+          "job"
+        ],
+        "id": "topic-10-07"
+      },
+      {
+        "word": "game",
+        "meaning": "משחק",
+        "asset": "game",
+        "example": "",
+        "focus": [],
+        "id": "topic-10-08"
+      },
+      {
+        "word": "magic",
+        "meaning": "קסם",
+        "asset": "magic",
+        "example": "",
+        "focus": [],
+        "id": "topic-10-09"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-10"
+  },
+  {
+    "he": "מסיבה ויום הולדת",
+    "en": "Parties and birthdays",
+    "items": [
+      {
+        "word": "gift",
+        "meaning": "מתנה",
+        "asset": "gift",
+        "example": "",
+        "focus": [],
+        "id": "topic-11-01"
+      },
+      {
+        "word": "birthday",
+        "meaning": "יום הולדת",
+        "asset": "birthday",
+        "example": "",
+        "focus": [],
+        "id": "topic-11-02"
+      },
+      {
+        "word": "card",
+        "meaning": "כרטיס ברכה",
+        "asset": "card",
+        "example": "",
+        "focus": [],
+        "id": "topic-11-03"
+      },
+      {
+        "word": "party",
+        "meaning": "מסיבה",
+        "asset": "party",
+        "example": "",
+        "focus": [],
+        "id": "topic-11-04"
+      },
+      {
+        "word": "Happy birthday",
+        "meaning": "יום הולדת שמח",
+        "asset": "birthday",
+        "example": "Happy birthday, Tom!",
+        "focus": [
+          "Happy birthday"
+        ],
+        "id": "topic-11-05"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-11"
+  },
+  {
+    "he": "פעולות",
+    "en": "Actions",
+    "items": [
+      {
+        "word": "help",
+        "meaning": "לעזור",
+        "asset": "help",
+        "example": "",
+        "focus": [],
+        "id": "topic-12-01"
+      },
+      {
+        "word": "add",
+        "meaning": "להוסיף",
+        "asset": "add",
+        "example": "Add one.",
+        "focus": [
+          "add"
+        ],
+        "id": "topic-12-02"
+      },
+      {
+        "word": "play",
+        "meaning": "לשחק",
+        "asset": "play",
+        "example": "I play a game.",
+        "focus": [
+          "play"
+        ],
+        "id": "topic-12-03"
+      },
+      {
+        "word": "play",
+        "meaning": "לנגן",
+        "asset": "guitar",
+        "example": "I play the guitar.",
+        "focus": [
+          "play"
+        ],
+        "id": "topic-12-04"
+      },
+      {
+        "word": "run",
+        "meaning": "לרוץ",
+        "asset": "fast",
+        "example": "",
+        "focus": [],
+        "id": "topic-12-05"
+      },
+      {
+        "word": "rest",
+        "meaning": "לנוח",
+        "asset": "rest",
+        "example": "",
+        "focus": [],
+        "id": "topic-12-06"
+      },
+      {
+        "word": "ask",
+        "meaning": "לשאול או לבקש",
+        "asset": "ask",
+        "example": "Ask me.",
+        "focus": [
+          "ask"
+        ],
+        "id": "topic-12-07"
+      },
+      {
+        "word": "sing",
+        "meaning": "לשיר",
+        "asset": "sing",
+        "example": "",
+        "focus": [],
+        "id": "topic-12-08"
+      },
+      {
+        "word": "plan",
+        "meaning": "לתכנן",
+        "asset": "plan",
+        "example": "",
+        "focus": [],
+        "id": "topic-12-09"
+      },
+      {
+        "word": "eat",
+        "meaning": "לאכול",
+        "asset": "eat",
+        "example": "",
+        "focus": [],
+        "id": "topic-12-10"
+      },
+      {
+        "word": "swim",
+        "meaning": "לשחות",
+        "asset": "swim",
+        "example": "",
+        "focus": [],
+        "id": "topic-12-11"
+      },
+      {
+        "word": "jump",
+        "meaning": "לקפוץ",
+        "asset": "jump",
+        "example": "",
+        "focus": [],
+        "id": "topic-12-12"
+      },
+      {
+        "word": "cut",
+        "meaning": "לחתוך או לגזור",
+        "asset": "cut",
+        "example": "",
+        "focus": [],
+        "id": "topic-12-13"
+      },
+      {
+        "word": "talk",
+        "meaning": "לדבר",
+        "asset": "talk",
+        "example": "",
+        "focus": [],
+        "id": "topic-12-14"
+      },
+      {
+        "word": "Look / look",
+        "meaning": "להסתכל",
+        "asset": "eyes",
+        "example": "Look at the cat!",
+        "focus": [
+          "Look"
+        ],
+        "id": "topic-12-15"
+      },
+      {
+        "word": "put",
+        "meaning": "לשים או להניח",
+        "asset": "put",
+        "example": "",
+        "focus": [],
+        "id": "topic-12-16"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-12"
+  },
+  {
+    "he": "רגשות ותחושות",
+    "en": "Feelings and sensations",
+    "items": [
+      {
+        "word": "sad",
+        "meaning": "עצוב",
+        "asset": "sad",
+        "example": "",
+        "focus": [],
+        "id": "topic-13-01"
+      },
+      {
+        "word": "bad",
+        "meaning": "רע",
+        "asset": "bad",
+        "example": "This is bad.",
+        "focus": [
+          "bad"
+        ],
+        "id": "topic-13-02"
+      },
+      {
+        "word": "good",
+        "meaning": "טוב",
+        "asset": "good",
+        "example": "This is good.",
+        "focus": [
+          "good"
+        ],
+        "id": "topic-13-03"
+      },
+      {
+        "word": "best",
+        "meaning": "הכי טוב",
+        "asset": "best",
+        "example": "The best!",
+        "focus": [
+          "best"
+        ],
+        "id": "topic-13-04"
+      },
+      {
+        "word": "happy",
+        "meaning": "שמח",
+        "asset": "happy",
+        "example": "I am happy.",
+        "focus": [
+          "happy"
+        ],
+        "id": "topic-13-05"
+      },
+      {
+        "word": "hot",
+        "meaning": "חם",
+        "asset": "hot",
+        "example": "I am hot.",
+        "focus": [
+          "hot"
+        ],
+        "id": "topic-13-06"
+      },
+      {
+        "word": "cold",
+        "meaning": "קר",
+        "asset": "cold",
+        "example": "I am cold.",
+        "focus": [
+          "cold"
+        ],
+        "id": "topic-13-07"
+      },
+      {
+        "word": "soft",
+        "meaning": "רך",
+        "asset": "soft",
+        "example": "It is soft.",
+        "focus": [
+          "soft"
+        ],
+        "id": "topic-13-08"
+      },
+      {
+        "word": "fun",
+        "meaning": "כיפי או מהנה",
+        "asset": "play",
+        "example": "The game is fun.",
+        "focus": [
+          "fun"
+        ],
+        "id": "topic-13-09"
+      },
+      {
+        "word": "mad",
+        "meaning": "כועס",
+        "asset": "mad",
+        "example": "I am mad.",
+        "focus": [
+          "mad"
+        ],
+        "id": "topic-13-10"
+      },
+      {
+        "word": "hungry",
+        "meaning": "רעב",
+        "asset": "hungry",
+        "example": "I am hungry.",
+        "focus": [
+          "hungry"
+        ],
+        "id": "topic-13-11"
+      },
+      {
+        "word": "glad",
+        "meaning": "מרוצה או מאושר",
+        "asset": "glad",
+        "example": "I am glad.",
+        "focus": [
+          "glad"
+        ],
+        "id": "topic-13-12"
+      },
+      {
+        "word": "quiet",
+        "meaning": "שקט",
+        "asset": "quiet",
+        "example": "I am quiet.",
+        "focus": [
+          "quiet"
+        ],
+        "id": "topic-13-13"
+      },
+      {
+        "word": "great",
+        "meaning": "נהדר",
+        "asset": "good",
+        "example": "Great job!",
+        "focus": [
+          "great"
+        ],
+        "id": "topic-13-14"
+      },
+      {
+        "word": "lost",
+        "meaning": "אבוד",
+        "asset": "lost",
+        "example": "I am lost.",
+        "focus": [
+          "lost"
+        ],
+        "id": "topic-13-15"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-13"
+  },
+  {
+    "he": "גודל מהירות ומזג אוויר",
+    "en": "Size speed and weather",
+    "items": [
+      {
+        "word": "big",
+        "meaning": "גדול",
+        "asset": "big",
+        "example": "The red ball is big.",
+        "focus": [
+          "big"
+        ],
+        "id": "topic-14-01"
+      },
+      {
+        "word": "small",
+        "meaning": "קטן",
+        "asset": "small",
+        "example": "The red ball is small.",
+        "focus": [
+          "small"
+        ],
+        "id": "topic-14-02"
+      },
+      {
+        "word": "tall",
+        "meaning": "גבוה",
+        "asset": "tall",
+        "example": "He is tall.",
+        "focus": [
+          "tall"
+        ],
+        "id": "topic-14-03"
+      },
+      {
+        "word": "fast",
+        "meaning": "מהיר",
+        "asset": "fast",
+        "example": "I can run fast.",
+        "focus": [
+          "fast"
+        ],
+        "id": "topic-14-04"
+      },
+      {
+        "word": "long",
+        "meaning": "ארוך",
+        "asset": "long",
+        "example": "It is long.",
+        "focus": [
+          "long"
+        ],
+        "id": "topic-14-05"
+      },
+      {
+        "word": "sunny",
+        "meaning": "שמשי",
+        "asset": "sun",
+        "example": "",
+        "focus": [],
+        "id": "topic-14-06"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-14"
+  },
+  {
+    "he": "מקום זמן ומילות חיבור",
+    "en": "Position time and joining words",
+    "items": [
+      {
+        "word": "in",
+        "meaning": "בתוך",
+        "asset": "in",
+        "example": "",
+        "focus": [],
+        "id": "topic-15-01"
+      },
+      {
+        "word": "on",
+        "meaning": "על",
+        "asset": "on",
+        "example": "",
+        "focus": [],
+        "id": "topic-15-02"
+      },
+      {
+        "word": "under",
+        "meaning": "מתחת",
+        "asset": "under",
+        "example": "",
+        "focus": [],
+        "id": "topic-15-03"
+      },
+      {
+        "word": "top",
+        "meaning": "החלק העליון או בראש",
+        "asset": "top",
+        "example": "It is on top.",
+        "focus": [
+          "top"
+        ],
+        "id": "topic-15-04"
+      },
+      {
+        "word": "now",
+        "meaning": "עכשיו",
+        "asset": "now",
+        "example": "Eat now.",
+        "focus": [
+          "now"
+        ],
+        "id": "topic-15-05"
+      },
+      {
+        "word": "The / the",
+        "meaning": "ה הידיעה",
+        "asset": "cat",
+        "example": "The cat is happy.",
+        "focus": [
+          "The"
+        ],
+        "id": "topic-15-06"
+      },
+      {
+        "word": "And / and",
+        "meaning": "ו וגם",
+        "asset": "and",
+        "example": "An apple and an egg.",
+        "focus": [
+          "and"
+        ],
+        "id": "topic-15-07"
+      },
+      {
+        "word": "but",
+        "meaning": "אבל",
+        "asset": "big",
+        "example": "One is big, but one is small.",
+        "focus": [
+          "but"
+        ],
+        "id": "topic-15-08"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-15"
+  },
+  {
+    "he": "מי מדבר ועל מי מדברים",
+    "en": "Pronouns and belonging",
+    "items": [
+      {
+        "word": "I",
+        "meaning": "אני",
+        "asset": "self",
+        "example": "I am a pupil.",
+        "focus": [
+          "I"
+        ],
+        "id": "topic-16-01"
+      },
+      {
+        "word": "You",
+        "meaning": "אתה את אתם אתן",
+        "asset": "you",
+        "example": "I like you.",
+        "focus": [
+          "You"
+        ],
+        "id": "topic-16-02"
+      },
+      {
+        "word": "He",
+        "meaning": "הוא",
+        "asset": "head",
+        "example": "He is a boy.",
+        "focus": [
+          "He"
+        ],
+        "id": "topic-16-03"
+      },
+      {
+        "word": "She",
+        "meaning": "היא",
+        "asset": "girl",
+        "example": "She is a girl.",
+        "focus": [
+          "She"
+        ],
+        "id": "topic-16-04"
+      },
+      {
+        "word": "they",
+        "meaning": "הם או הן",
+        "asset": "friend",
+        "example": "They can play.",
+        "focus": [
+          "they"
+        ],
+        "id": "topic-16-05"
+      },
+      {
+        "word": "My",
+        "meaning": "שלי",
+        "asset": "my",
+        "example": "My bag.",
+        "focus": [
+          "My"
+        ],
+        "id": "topic-16-06"
+      },
+      {
+        "word": "Me",
+        "meaning": "אותי או לי",
+        "asset": "self",
+        "example": "Look at me.",
+        "focus": [
+          "Me"
+        ],
+        "id": "topic-16-07"
+      }
+    ],
+    "kind": "words",
+    "id": "topic-16"
+  },
+  {
+    "he": "צירופים על עצמי ועל אחרים",
+    "en": "About me and other people",
+    "items": [
+      {
+        "word": "I want",
+        "meaning": "אני רוצה",
+        "asset": "want",
+        "example": "I want an apple.",
+        "focus": [
+          "I want"
+        ],
+        "id": "topic-17-01"
+      },
+      {
+        "word": "I have",
+        "meaning": "יש לי",
+        "asset": "have_boy",
+        "example": "I have a book.",
+        "focus": [
+          "I have"
+        ],
+        "id": "topic-17-02"
+      },
+      {
+        "word": "I can",
+        "meaning": "אני יכול או יכולה",
+        "asset": "swim",
+        "example": "I can swim.",
+        "focus": [
+          "I can"
+        ],
+        "id": "topic-17-03"
+      },
+      {
+        "word": "He has",
+        "meaning": "יש לו",
+        "asset": "have_boy",
+        "example": "He has a book.",
+        "focus": [
+          "He has"
+        ],
+        "id": "topic-17-04"
+      },
+      {
+        "word": "He is",
+        "meaning": "הוא",
+        "asset": "head",
+        "example": "He is a boy.",
+        "focus": [
+          "He is"
+        ],
+        "id": "topic-17-05"
+      },
+      {
+        "word": "I like",
+        "meaning": "אני אוהב או אוהבת",
+        "asset": "like",
+        "example": "I like apples.",
+        "focus": [
+          "I like"
+        ],
+        "id": "topic-17-06"
+      },
+      {
+        "word": "I don't like",
+        "meaning": "אני לא אוהב או אוהבת",
+        "asset": "dislike",
+        "example": "I don't like apples.",
+        "focus": [
+          "I don't like"
+        ],
+        "id": "topic-17-07"
+      },
+      {
+        "word": "She has",
+        "meaning": "יש לה",
+        "asset": "have_girl",
+        "example": "She has a book.",
+        "focus": [
+          "She has"
+        ],
+        "id": "topic-17-08"
+      },
+      {
+        "word": "She is",
+        "meaning": "היא",
+        "asset": "girl",
+        "example": "She is a girl.",
+        "focus": [
+          "She is"
+        ],
+        "id": "topic-17-09"
+      },
+      {
+        "word": "I am",
+        "meaning": "אני",
+        "asset": "self",
+        "example": "I am a pupil.",
+        "focus": [
+          "I am"
+        ],
+        "id": "topic-17-10"
+      }
+    ],
+    "kind": "phrases",
+    "id": "topic-17"
+  },
+  {
+    "he": "שלום היכרות ונימוס",
+    "en": "Greetings introductions and politeness",
+    "items": [
+      {
+        "word": "Hello",
+        "meaning": "שלום",
+        "asset": "wave",
+        "example": "Hello, Tom!",
+        "focus": [
+          "Hello"
+        ],
+        "id": "topic-18-01"
+      },
+      {
+        "word": "What's your name?",
+        "meaning": "מה שמך",
+        "asset": "ask",
+        "example": "What's your name? I'm Tom.",
+        "focus": [
+          "What's your name"
+        ],
+        "id": "topic-18-02"
+      },
+      {
+        "word": "My name is ...",
+        "meaning": "קוראים לי",
+        "asset": "self",
+        "example": "My name is Tom.",
+        "focus": [
+          "My name is"
+        ],
+        "id": "topic-18-03"
+      },
+      {
+        "word": "How are you?",
+        "meaning": "מה שלומך",
+        "asset": "happy",
+        "example": "How are you? I'm fine.",
+        "focus": [
+          "How are you"
+        ],
+        "id": "topic-18-04"
+      },
+      {
+        "word": "I'm fine, thank you.",
+        "meaning": "אני בסדר תודה",
+        "asset": "happy",
+        "example": "How are you? I'm fine, thank you.",
+        "focus": [
+          "I'm fine, thank you"
+        ],
+        "id": "topic-18-05"
+      },
+      {
+        "word": "Thank you",
+        "meaning": "תודה",
+        "asset": "thanks",
+        "example": "Thank you!",
+        "focus": [
+          "Thank you"
+        ],
+        "id": "topic-18-06"
+      },
+      {
+        "word": "You're welcome",
+        "meaning": "בבקשה על לא דבר",
+        "asset": "you",
+        "example": "Thank you! You're welcome!",
+        "focus": [
+          "You're welcome"
+        ],
+        "id": "topic-18-07"
+      },
+      {
+        "word": "Good morning",
+        "meaning": "בוקר טוב",
+        "asset": "morning",
+        "example": "Good morning, Tom!",
+        "focus": [
+          "Good morning"
+        ],
+        "id": "topic-18-08"
+      },
+      {
+        "word": "Goodbye",
+        "meaning": "להתראות",
+        "asset": "wave",
+        "example": "Goodbye, Tom!",
+        "focus": [
+          "Goodbye"
+        ],
+        "id": "topic-18-09"
+      },
+      {
+        "word": "Yes",
+        "meaning": "כן",
+        "asset": "good",
+        "example": "Yes, I can swim.",
+        "focus": [
+          "Yes"
+        ],
+        "id": "topic-18-10"
+      },
+      {
+        "word": "No",
+        "meaning": "לא",
+        "asset": "dislike",
+        "example": "No, thank you.",
+        "focus": [
+          "No"
+        ],
+        "id": "topic-18-11"
+      },
+      {
+        "word": "Please",
+        "meaning": "בבקשה",
+        "asset": "thanks",
+        "example": "Please help me.",
+        "focus": [
+          "Please"
+        ],
+        "id": "topic-18-12"
+      }
+    ],
+    "kind": "phrases",
+    "id": "topic-18"
+  },
+  {
+    "he": "מסתכלים שואלים ומתארים",
+    "en": "Looking asking and describing",
+    "items": [
+      {
+        "word": "What is it?",
+        "meaning": "מה זה",
+        "asset": "cat",
+        "example": "What is it? It's a cat.",
+        "focus": [
+          "What is it"
+        ],
+        "id": "topic-19-01"
+      },
+      {
+        "word": "It's a ...",
+        "meaning": "זה",
+        "asset": "cat",
+        "example": "It's a cat.",
+        "focus": [
+          "It's a"
+        ],
+        "id": "topic-19-02"
+      },
+      {
+        "word": "Where are you?",
+        "meaning": "איפה אתה או את",
+        "asset": "living_room",
+        "example": "Where are you? I am at home.",
+        "focus": [
+          "Where are you"
+        ],
+        "id": "topic-19-03"
+      },
+      {
+        "word": "Look!",
+        "meaning": "הסתכלו",
+        "asset": "eyes",
+        "example": "Look at the cat!",
+        "focus": [
+          "Look"
+        ],
+        "id": "topic-19-04"
+      },
+      {
+        "word": "What do you see?",
+        "meaning": "מה אתה או את רואים",
+        "asset": "eyes",
+        "example": "What do you see? I see a cat.",
+        "focus": [
+          "What do you see"
+        ],
+        "id": "topic-19-05"
+      },
+      {
+        "word": "I see ...",
+        "meaning": "אני רואה",
+        "asset": "cat",
+        "example": "I see a cat.",
+        "focus": [
+          "I see"
+        ],
+        "id": "topic-19-06"
+      },
+      {
+        "word": "This is my ...",
+        "meaning": "זה שלי",
+        "asset": "my",
+        "example": "This is my bag.",
+        "focus": [
+          "This is my"
+        ],
+        "id": "topic-19-07"
+      },
+      {
+        "word": "Where's ...?",
+        "meaning": "איפה",
+        "asset": "lost",
+        "example": "Where's my house?",
+        "focus": [
+          "Where's"
+        ],
+        "id": "topic-19-08"
+      },
+      {
+        "word": "It's in ...",
+        "meaning": "זה בתוך",
+        "asset": "in",
+        "example": "It's in the box.",
+        "focus": [
+          "It's in"
+        ],
+        "id": "topic-19-09"
+      },
+      {
+        "word": "It's on ...",
+        "meaning": "זה על",
+        "asset": "on",
+        "example": "It's on the box.",
+        "focus": [
+          "It's on"
+        ],
+        "id": "topic-19-10"
+      },
+      {
+        "word": "What's this?",
+        "meaning": "מה זה",
+        "asset": "apple",
+        "example": "What's this? It's an apple.",
+        "focus": [
+          "What's this"
+        ],
+        "id": "topic-19-11"
+      },
+      {
+        "word": "This is a ...",
+        "meaning": "זה",
+        "asset": "dog",
+        "example": "This is a dog.",
+        "focus": [
+          "This is a"
+        ],
+        "id": "topic-19-12"
+      },
+      {
+        "word": "It has ...",
+        "meaning": "יש לזה",
+        "asset": "elephant",
+        "example": "It has a long nose.",
+        "focus": [
+          "It has"
+        ],
+        "id": "topic-19-13"
+      },
+      {
+        "word": "It's near ...",
+        "meaning": "זה ליד או בסמוך",
+        "asset": "near",
+        "example": "It's near the box.",
+        "focus": [
+          "It's near"
+        ],
+        "id": "topic-19-14"
+      },
+      {
+        "word": "It's not ...",
+        "meaning": "זה לא",
+        "asset": "cat",
+        "example": "It's not a dog.",
+        "focus": [
+          "It's not"
+        ],
+        "id": "topic-19-15"
+      },
+      {
+        "word": "There's a ...",
+        "meaning": "יש",
+        "asset": "cat",
+        "example": "There's a cat.",
+        "focus": [
+          "There's a"
+        ],
+        "id": "topic-19-16"
+      },
+      {
+        "word": "Who is ...?",
+        "meaning": "מי זה או מי זאת",
+        "asset": "head",
+        "example": "Who is he?",
+        "focus": [
+          "Who is"
+        ],
+        "id": "topic-19-17"
+      },
+      {
+        "word": "That's ...",
+        "meaning": "זה או זאת",
+        "asset": "girl",
+        "example": "That's my sister.",
+        "focus": [
+          "That's"
+        ],
+        "id": "topic-19-18"
+      },
+      {
+        "word": "Who has ...?",
+        "meaning": "למי יש",
+        "asset": "have_boy",
+        "example": "Who has a book?",
+        "focus": [
+          "Who has"
+        ],
+        "id": "topic-19-19"
+      },
+      {
+        "word": "What's in the ...?",
+        "meaning": "מה בתוך",
+        "asset": "in",
+        "example": "What's in the box?",
+        "focus": [
+          "What's in the"
+        ],
+        "id": "topic-19-20"
+      }
+    ],
+    "kind": "phrases",
+    "id": "topic-19"
+  },
+  {
+    "he": "הוראות ופעילויות",
+    "en": "Instructions and activities",
+    "items": [
+      {
+        "word": "Open the ...",
+        "meaning": "פתחו את",
+        "asset": "open",
+        "example": "Open the door.",
+        "focus": [
+          "Open the"
+        ],
+        "id": "topic-20-01"
+      },
+      {
+        "word": "Close the ...",
+        "meaning": "סגרו את",
+        "asset": "close",
+        "example": "Close the door.",
+        "focus": [
+          "Close the"
+        ],
+        "id": "topic-20-02"
+      },
+      {
+        "word": "Let's go (to) ...",
+        "meaning": "בואו נלך אל",
+        "asset": "school",
+        "example": "Let's go to school.",
+        "focus": [
+          "Let's go to"
+        ],
+        "id": "topic-20-03"
+      },
+      {
+        "word": "Stand up",
+        "meaning": "קומו או עמדו",
+        "asset": "stand",
+        "example": "Stand up, please.",
+        "focus": [
+          "Stand up"
+        ],
+        "id": "topic-20-04"
+      },
+      {
+        "word": "Sit down",
+        "meaning": "שבו",
+        "asset": "sit",
+        "example": "Sit down, please.",
+        "focus": [
+          "Sit down"
+        ],
+        "id": "topic-20-05"
+      },
+      {
+        "word": "Stop!",
+        "meaning": "עצרו",
+        "asset": "stop",
+        "example": "Stop, please!",
+        "focus": [
+          "Stop"
+        ],
+        "id": "topic-20-06"
+      },
+      {
+        "word": "Come and see",
+        "meaning": "בואו לראות",
+        "asset": "come",
+        "example": "Come and see!",
+        "focus": [
+          "Come and see"
+        ],
+        "id": "topic-20-07"
+      },
+      {
+        "word": "Play a game",
+        "meaning": "לשחק משחק",
+        "asset": "play",
+        "example": "I can play a game.",
+        "focus": [
+          "Play a game"
+        ],
+        "id": "topic-20-08"
+      },
+      {
+        "word": "Go on a trip",
+        "meaning": "לצאת לטיול",
+        "asset": "trip",
+        "example": "Let's go on a trip.",
+        "focus": [
+          "Go on a trip"
+        ],
+        "id": "topic-20-09"
+      }
+    ],
+    "kind": "phrases",
+    "id": "topic-20"
+  },
+  {
+    "he": "מדברים על מזג האוויר",
+    "en": "Talking about the weather",
+    "items": [
+      {
+        "word": "How's the weather?",
+        "meaning": "מה מזג האוויר",
+        "asset": "hot_sunny",
+        "example": "How's the weather? It's hot.",
+        "focus": [
+          "How's the weather"
+        ],
+        "id": "topic-21-01"
+      },
+      {
+        "word": "It's hot and sunny",
+        "meaning": "חם ושמשי",
+        "asset": "hot_sunny",
+        "example": "It's hot and sunny.",
+        "focus": [
+          "hot",
+          "sunny"
+        ],
+        "id": "topic-21-02"
+      }
+    ],
+    "kind": "phrases",
+    "id": "topic-21"
+  }
+]
