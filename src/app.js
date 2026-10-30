@@ -1,6 +1,8 @@
+import { createImagePreloader } from './preload.js';
 import { STORAGE_KEY, blankProgress, sanitizeProgress, topicStats, itemProgress, startSession, answerQuestion, advanceSession, choicesFor } from './engine.js';
 
 const app = document.querySelector('#app');
+const prepareImages = createImagePreloader();
 let topics, progress, session = null, choices = [], filter = 'all', saveFailed = false;
 const icons = {
   star: '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>',
@@ -33,6 +35,7 @@ function bindHeader() {
 function goHome() { session = null; save(); renderHome(); window.scrollTo(0, 0); }
 
 function renderHome() {
+  prepareImages([]);
   const stats = topics.map(t => topicStats(t, progress));
   const completed = stats.filter(s => s.complete).length;
   const pending = stats.reduce((sum, s) => sum + s.pending.length, 0);
@@ -73,6 +76,8 @@ function highlightedExample(q) {
 function renderQuestion(focusHeading = false) {
   const q = current(), t = topic(), p = itemProgress(progress, q.id);
   const review = session.mode === 'review';
+  const nextQuestion = t.items.find(item => item.id === session.queue[session.index + 1]);
+  const illustration = prepareImages([asset(q.asset), nextQuestion && asset(nextQuestion.asset)]);
   const progressPercent = review ? t.items.filter(x => itemProgress(progress, x.id).seen && !itemProgress(progress, x.id).debt).length / t.items.length * 100 : session.index / session.queue.length * 100;
   app.innerHTML = `${header(true)}<main id="main" class="practice" tabindex="-1">${saveNotice()}<div class="practice-heading"><div><span class="eyebrow">${review ? 'מחזקים את מה שעוד קשה' : 'לומדים ומגלים'}</span><h1>${esc(t.he)}</h1></div><span class="round-label">${review ? `סבב חיזוק · ${session.index + 1} מתוך ${session.queue.length}` : `שאלה ${session.index + 1} מתוך ${session.queue.length}`}</span></div><div class="session-progress" role="progressbar" aria-label="התקדמות בנושא" aria-valuenow="${Math.round(progressPercent)}" aria-valuemin="0" aria-valuemax="100"><span style="width:${progressPercent}%"></span></div>
   <div class="question-layout"><section class="question-panel" aria-labelledby="question-word"><div class="question-label">${q.word === 'play' ? 'מה פירוש המילה המודגשת במשפט?' : 'מה הפירוש בעברית?'}</div><h2 id="question-word" tabindex="-1" lang="en" dir="ltr">${esc(q.word)}</h2>${q.example ? `<p class="example" lang="en" dir="ltr">${highlightedExample(q)}</p>` : ''}<div class="mastery-slot">${p.debt ? `<div class="mastery"><span>מנקים את השאלה</span><div class="mastery-dots" aria-label="${p.streak} מתוך 3 תשובות נכונות בניסיון הראשון">${[1, 2, 3].map(n => `<span class="${p.streak >= n ? 'filled' : ''}">${p.streak >= n ? icon('check') : n}</span>`).join('')}</div><small>3 הצלחות בניסיון הראשון · טעות מתחילה מחדש</small></div>` : review && session.done ? `<div class="cleaned">${icon('check')} השאלה נקייה! כל הכבוד</div>` : ''}</div>
@@ -80,8 +85,13 @@ function renderQuestion(focusHeading = false) {
     const wrong = session.wrong.includes(meaning), right = session.done && meaning === q.meaning;
     return `<button class="answer ${wrong ? 'wrong' : ''} ${right ? 'right' : ''}" data-answer="${i}" ${session.done || wrong ? 'disabled' : ''}><span class="answer-key">${right ? icon('check') : wrong ? icon('close') : i + 1}</span><span>${esc(meaning)}</span></button>`;
   }).join('')}</div><div class="feedback ${session.result || ''}" role="status" aria-live="polite">${feedback(q)}</div><div class="question-actions">${session.done ? `<button class="button primary next">${nextLabel()} ${icon('arrow')}</button>` : '<span class="keyboard-hint">בוחרים תשובה אחת · אפשר גם במקשים 1–4</span>'}<span class="session-stars">${icon('star')} ${session.stars} כוכבים בתרגול</span></div></section>
-  <aside class="illustration-panel ${session.reveal ? 'revealed' : ''}" aria-label="איור המילה">${session.reveal ? `<span class="illustration-label">עכשיו גם רואים את זה</span><img class="question-image" src="${asset(q.asset)}" alt="איור של ${esc(q.word)}"><div class="image-caption">${session.done ? `<strong lang="en" dir="ltr">${esc(q.word)}</strong><span>${esc(q.meaning)}</span>` : 'התמונה יכולה לעזור. עוד ניסיון?'}</div>` : `<div class="hidden-art">${icon('question')}<h3>קודם חושבים,<br>אחר כך מגלים.</h3><p>האיור יופיע אחרי<br>שתבחרו תשובה.</p><span class="secret-spark">✦</span></div>`}</aside></div><div class="practice-footnote">${review ? `${topicStats(t, progress).pending.length} שאלות עדיין מחכות לניקוי · אפשר לשמור ולצאת בכל רגע` : 'טעות היא הזדמנות ללמוד. יש שני ניסיונות בכל שאלה.'}</div></main>`;
+  <aside class="illustration-panel ${session.reveal ? 'revealed' : ''}" aria-label="איור המילה">${session.reveal ? `<span class="illustration-label">עכשיו גם רואים את זה</span><span data-question-image></span><div class="image-caption">${session.done ? `<strong lang="en" dir="ltr">${esc(q.word)}</strong><span>${esc(q.meaning)}</span>` : 'התמונה יכולה לעזור. עוד ניסיון?'}</div>` : `<div class="hidden-art">${icon('question')}<h3>קודם חושבים,<br>אחר כך מגלים.</h3><p>האיור יופיע אחרי<br>שתבחרו תשובה.</p><span class="secret-spark">✦</span></div>`}</aside></div><div class="practice-footnote">${review ? `${topicStats(t, progress).pending.length} שאלות עדיין מחכות לניקוי · אפשר לשמור ולצאת בכל רגע` : 'טעות היא הזדמנות ללמוד. יש שני ניסיונות בכל שאלה.'}</div></main>`;
   bindHeader();
+  if (session.reveal) {
+    illustration.className = 'question-image';
+    illustration.alt = `איור של ${q.word}`;
+    app.querySelector('[data-question-image]').replaceWith(illustration);
+  }
   app.querySelectorAll('[data-answer]').forEach(button => button.addEventListener('click', () => choose(Number(button.dataset.answer))));
   app.querySelector('.next')?.addEventListener('click', next);
   if (focusHeading) app.querySelector('#question-word').focus({ preventScroll: true });

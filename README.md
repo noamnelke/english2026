@@ -31,6 +31,7 @@ npm test
 
 ## Structure
 
+- `src/preload.js`: a two-image rolling preload/decode pool; the revealed image reuses the prepared element.
 - `src/engine.js`: independently tested practice and mastery rules.
 - `src/app.js`, `src/style.css`: accessible, responsive RTL interface.
 - `src/data.json`: booklet vocabulary, translations, examples, focus terms, stable question IDs.
