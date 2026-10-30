@@ -88,37 +88,17 @@
   .practice .feedback:empty { padding: 0; }
 }
 
-/* Short portrait phones place the illustration beside the word and example. */
+/* Compact portrait layout keeps the illustration below the word on every phone. */
 @media (max-width: 720px) and (max-height: 740px) and (orientation: portrait) {
   .practice { gap: 6px; padding-top: 8px; }
   .practice-heading .eyebrow { display: none; }
   .practice-heading h1 { font-size: 16px; margin-top: 0; }
-  .practice .question-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 86px;
-    grid-template-rows: auto auto minmax(0, 1fr) auto auto auto;
-    column-gap: 10px;
-    row-gap: 4px;
-    padding: 12px;
-  }
-  .practice .question-panel > .question-label { grid-area: 1 / 1; margin: 0; font-size: 10px; }
-  .practice .question-panel > h2 { grid-area: 2 / 1; font-size: 24px; margin: 0; }
-  .practice .question-panel > .example { grid-area: 3 / 1; font-size: 12px; line-height: 1.5; margin: 0; }
-  .practice .question-layout > .illustration-panel { grid-area: 1 / 2 / 4 / 3; height: 100%; margin: 0; padding: 7px 4px; border-radius: 10px; }
-  .practice .question-layout > .illustration-panel.revealed { padding: 12px 4px 5px; }
-  .practice .question-image { max-height: 180px; max-width: 100%; margin: 0; }
-  .practice .illustration-label { font-size: 6px; right: 4px; top: 4px; }
-  .practice .image-caption { font-size: 8px; }
-  .practice .image-caption strong { display: none; }
-  .practice .image-caption span { font-size: 8px; }
-  .practice .hidden-art { flex-direction: column; gap: 5px; }
-  .practice .hidden-art h3 { font-size: 10px; text-align: center; }
-  .practice .hidden-art p { font-size: 8px; text-align: center; line-height: 1.5; }
-  .practice .hidden-art > .icon { width: 20px; height: 20px; }
-  .practice .question-panel > .mastery,
-  .practice .question-panel > .cleaned { grid-area: 4 / 1 / 5 / -1; margin: 3px 0; }
-  .practice .question-panel > .answers { grid-area: 5 / 1 / 6 / -1; margin: 2px 0 0; }
-  .practice .question-panel > .feedback { grid-area: 6 / 1 / 7 / -1; padding-top: 3px; }
+  .practice .question-layout { padding: 10px 12px; }
+  .practice .question-label { font-size: 10px; margin-bottom: 3px; }
+  .practice .question-panel > h2 { font-size: 23px; line-height: 1.25; margin: 0 0 3px; }
+  .practice .question-panel > .example { font-size: 12px; line-height: 1.5; margin: 0 0 6px; }
+  .practice .question-layout > .illustration-panel { margin: 0 0 8px; border-radius: 12px; }
+  .practice .question-image { max-height: 180px; }
 }
 
 /* Landscape phones use the available width rather than stacking the artwork. */
@@ -161,4 +141,63 @@
   body:has(.practice) .brand-icon { width: 30px; height: 30px; }
   body:has(.practice) .header-end { gap: 8px; }
   body:has(.practice) .leave { white-space: nowrap; font-size: 10px; }
+}
+
+/* Reserve the complete result area before answering, so neither choices nor art jump. */
+.mastery-slot { display: contents; }
+@media (max-width: 720px) {
+  .practice .question-layout { position: relative; }
+  .practice .mastery-slot {
+    display: block;
+    position: absolute;
+    inset-inline: 14px;
+    bottom: 14px;
+    height: 46px;
+  }
+  .practice .mastery-slot > .mastery,
+  .practice .mastery-slot > .cleaned {
+    height: 46px;
+    padding: 4px 8px;
+    margin: 0;
+    gap: 4px;
+    font-size: 11px;
+  }
+  .practice .mastery-slot > .cleaned { display: flex; align-items: center; }
+  .practice .question-panel > .feedback,
+  .practice .question-panel > .feedback:empty {
+    height: 92px;
+    min-height: 92px;
+    max-height: 92px;
+    padding: 8px 0 46px;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 720px) and (max-height: 740px) and (orientation: portrait) {
+  .practice .mastery-slot { inset-inline: 12px; bottom: 10px; }
+}
+@media (max-width: 1000px) and (max-height: 600px) and (orientation: landscape) {
+  .practice .question-panel { grid-template-rows: auto auto 24px auto 28px; padding: 6px 8px; row-gap: 1px; }
+  .practice .question-panel > h2 { font-size: 22px; }
+  .practice .mastery-slot { display: block; position: static; grid-area: 3 / 1 / 4 / -1; height: 24px; }
+  .practice .mastery-slot > .mastery,
+  .practice .mastery-slot > .cleaned { height: 24px; padding: 2px 5px; margin: 0; gap: 5px; font-size: 9px; }
+  .practice .question-panel > .feedback,
+  .practice .question-panel > .feedback:empty { height: 28px; min-height: 28px; max-height: 28px; padding: 0; align-items: flex-start; }
+}
+
+/* Keep a useful illustration even on the smallest portrait viewports. */
+@media (max-width: 720px) and (max-height: 620px) and (orientation: portrait) {
+  body:has(.practice) .site-header { height: calc(48px + env(safe-area-inset-top, 0px)); }
+  .practice { height: calc(100svh - 48px - env(safe-area-inset-top, 0px)); height: calc(100dvh - 48px - env(safe-area-inset-top, 0px)); padding-top: 6px; gap: 4px; }
+  .practice-heading h1 { font-size: 15px; }
+  .practice .question-layout { padding-block: 8px; }
+  .practice .answer { min-height: 44px; padding: 6px 8px; font-size: 13px; line-height: 1.35; gap: 6px; }
+  .practice .answer-key { min-width: 20px; height: 22px; }
+  .practice .mastery-slot { height: 34px; bottom: 8px; }
+  .practice .mastery-slot > .mastery,
+  .practice .mastery-slot > .cleaned { height: 34px; padding: 2px 6px; gap: 2px; font-size: 10px; line-height: 1.2; }
+  .practice .mastery-dots > span { height: 16px; width: 16px; font-size: 8px; }
+  .practice .mastery small { font-size: 7px; }
+  .practice .question-panel > .feedback,
+  .practice .question-panel > .feedback:empty { height: 76px; min-height: 76px; max-height: 76px; padding: 8px 0 34px; font-size: 10px; line-height: 1.5; }
 }
