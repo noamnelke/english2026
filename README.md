@@ -35,6 +35,7 @@ npm test
 - `src/engine.js`: independently tested practice and mastery rules.
 - `src/app.js`, `src/style.css`: accessible, responsive RTL interface.
 - `src/data.json`: booklet vocabulary, translations, examples, focus terms, stable question IDs.
+- `public/thumbnails/`: small answer illustrations for literal vocabulary; color choices use outlined paint swatches. Grammar and conversation answers retain text to avoid ambiguous illustrations.
 - `public/images/`: 171 WebP illustrations exported from the generated booklet art.
 - `scripts/`: static build and local HTTP preview, using Node standard modules.
 - `.openai/hosting.json`: Sites hosting identity and static output configuration.
