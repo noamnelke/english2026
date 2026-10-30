@@ -64,16 +64,12 @@ export function answerQuestion(session, progress, question, selectedMeaning) {
   return true;
 }
 
-export function advanceSession(session, topic, progress, random = Math.random) {
-  if (!session.done) return;
+export function advanceSession(session) {
+  if (!session.done || session.finished) return;
   session.index++;
   if (session.index === session.queue.length) {
-    const pending = topicStats(topic, progress).pending;
-    if (session.mode === 'review' && pending.length) {
-      session.queue = shuffle(pending.map(q => q.id), random);
-      session.index = 0;
-      session.round++;
-    } else { session.finished = true; return; }
+    session.finished = true;
+    return;
   }
   session.attempts = 0; session.wrong = []; session.done = false; session.reveal = false; session.result = null;
 }

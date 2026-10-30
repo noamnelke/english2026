@@ -201,3 +201,9 @@
   .practice .question-panel > .feedback,
   .practice .question-panel > .feedback:empty { height: 76px; min-height: 76px; max-height: 76px; padding: 8px 0 34px; font-size: 10px; line-height: 1.5; }
 }
+
+.summary-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+@media (max-width: 720px) {
+  .summary-actions { flex-direction: column; }
+  .summary-actions .button { width: 100%; }
+}

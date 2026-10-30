@@ -51,23 +51,49 @@ test('reentry contains only mistakes, even if some words were never attempted', 
   const s = startSession(tiny, p, fixed);
   assert.equal(s.mode, 'review'); assert.deepEqual(s.queue, ['a']);
 });
-test('three separate first-try successes clean an error; wrong answer resets accumulated credit', () => {
-  const p = blankProgress(); p.items.a = { seen: true, debt: true, streak: 0 };
-  let s = startSession(tiny, p, fixed);
+test('cleanup credit persists across visits; a mistake resets it without starting another pass', () => {
+  let p = blankProgress(); p.items.a = { seen: true, debt: true, streak: 0 };
   for (let streak = 1; streak <= 2; streak++) {
+    const s = startSession(tiny, p, fixed);
     answerQuestion(s, p, tiny.items[0], 'חתול');
-    assert.equal(p.items.a.streak, streak); advanceSession(s, tiny, p, fixed);
-    assert.equal(s.finished, false); assert.equal(s.reveal, false);
+    advanceSession(s);
+    assert.equal(s.finished, true);
+    assert.equal(s.answered, 1);
+    assert.equal(p.items.a.streak, streak);
+    assert.equal(p.items.a.debt, true);
+    p = sanitizeProgress(JSON.parse(JSON.stringify(p)), [tiny]);
   }
+  let s = startSession(tiny, p, fixed);
   answerQuestion(s, p, tiny.items[0], 'כלב');
   assert.equal(p.items.a.streak, 0);
-  answerQuestion(s, p, tiny.items[0], 'חתול'); advanceSession(s, tiny, p, fixed);
-  for (let n = 0; n < 3; n++) { answerQuestion(s, p, tiny.items[0], 'חתול'); advanceSession(s, tiny, p, fixed); }
-  assert.equal(s.finished, true); assert.equal(p.items.a.debt, false);
+  answerQuestion(s, p, tiny.items[0], 'חתול'); advanceSession(s);
+  assert.equal(s.finished, true); assert.equal(p.items.a.streak, 0);
+  for (let n = 0; n < 3; n++) {
+    s = startSession(tiny, p, fixed);
+    answerQuestion(s, p, tiny.items[0], 'חתול'); advanceSession(s);
+    assert.equal(s.finished, true);
+  }
+  assert.equal(p.items.a.debt, false);
   assert.equal(topicStats(tiny, p).complete, false, 'unseen words still prevent completion');
   s = startSession(tiny, p, fixed); assert.equal(s.mode, 'learn'); assert.deepEqual(s.queue, ['b']);
 });
-test('learning ends at summary even with mistakes; review repeats only remaining debts', () => {
+test('a review pass asks each pending question once, then ends even when both still need cleanup', () => {
+  const p = blankProgress();
+  p.items.a = { seen: true, debt: true, streak: 0 };
+  p.items.b = { seen: true, debt: true, streak: 0 };
+  const s = startSession(tiny, p, fixed);
+  answerQuestion(s, p, tiny.items[0], 'כלב'); answerQuestion(s, p, tiny.items[0], 'חתול');
+  advanceSession(s);
+  assert.equal(s.queue[s.index], 'b'); assert.equal(s.finished, false);
+  answerQuestion(s, p, tiny.items[1], 'כלב'); advanceSession(s);
+  assert.equal(s.finished, true); assert.equal(s.answered, 2); assert.equal(s.index, 2);
+  assert.deepEqual(s.queue, ['a', 'b']); assert.equal(p.stars, 2);
+  assert.equal(p.items.a.streak, 0); assert.equal(p.items.b.streak, 1);
+  assert.equal(topicStats(tiny, p).pending.length, 2);
+  advanceSession(s); assert.equal(s.index, 2, 'finished passes cannot advance or restart');
+  assert.deepEqual(startSession(tiny, p, fixed).queue, ['a', 'b']);
+});
+test('learning ends at summary even with mistakes; a review can clear its last debt', () => {
   const p = blankProgress(), s = startSession(tiny, p, fixed);
   answerQuestion(s, p, tiny.items[0], 'כלב'); answerQuestion(s, p, tiny.items[0], 'חתול');
   advanceSession(s, tiny, p, fixed); assert.equal(s.queue[s.index], 'b');
@@ -111,14 +137,19 @@ test('all 223 cards can complete learning and cleanup without skipping words or 
       advanceSession(s, topic, p, fixed);
     }
     assert.ok(topicStats(topic, p).pending.length);
-    s = startSession(topic, p, fixed);
-    let presentations = 0;
-    while (!s.finished && presentations < 100) {
-      const q = topic.items.find(q => q.id === s.queue[s.index]);
-      answerQuestion(s, p, q, q.meaning); expectedStars++; presentations++;
-      advanceSession(s, topic, p, fixed);
+    for (let visit = 0; visit < 3; visit++) {
+      const pendingCount = topicStats(topic, p).pending.length;
+      s = startSession(topic, p, fixed);
+      let presentations = 0;
+      while (!s.finished) {
+        const q = topic.items.find(q => q.id === s.queue[s.index]);
+        answerQuestion(s, p, q, q.meaning); expectedStars++; presentations++;
+        advanceSession(s);
+      }
+      assert.equal(presentations, pendingCount, 'each visit reviews every pending question exactly once');
+      if (visit < 2) assert.equal(topicStats(topic, p).complete, false);
     }
-    assert.equal(s.finished, true); assert.equal(topicStats(topic, p).complete, true);
+    assert.equal(topicStats(topic, p).complete, true);
     assert.equal(topicStats(topic, p).pending.length, 0);
   }
   assert.equal(p.stars, expectedStars);

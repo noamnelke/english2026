@@ -74,7 +74,7 @@ function renderQuestion(focusHeading = false) {
   const q = current(), t = topic(), p = itemProgress(progress, q.id);
   const review = session.mode === 'review';
   const progressPercent = review ? t.items.filter(x => itemProgress(progress, x.id).seen && !itemProgress(progress, x.id).debt).length / t.items.length * 100 : session.index / session.queue.length * 100;
-  app.innerHTML = `${header(true)}<main id="main" class="practice" tabindex="-1">${saveNotice()}<div class="practice-heading"><div><span class="eyebrow">${review ? 'מחזקים את מה שעוד קשה' : 'לומדים ומגלים'}</span><h1>${esc(t.he)}</h1></div><span class="round-label">${review ? `סבב חיזוק ${session.round}` : `שאלה ${session.index + 1} מתוך ${session.queue.length}`}</span></div><div class="session-progress" role="progressbar" aria-label="התקדמות בנושא" aria-valuenow="${Math.round(progressPercent)}" aria-valuemin="0" aria-valuemax="100"><span style="width:${progressPercent}%"></span></div>
+  app.innerHTML = `${header(true)}<main id="main" class="practice" tabindex="-1">${saveNotice()}<div class="practice-heading"><div><span class="eyebrow">${review ? 'מחזקים את מה שעוד קשה' : 'לומדים ומגלים'}</span><h1>${esc(t.he)}</h1></div><span class="round-label">${review ? `סבב חיזוק · ${session.index + 1} מתוך ${session.queue.length}` : `שאלה ${session.index + 1} מתוך ${session.queue.length}`}</span></div><div class="session-progress" role="progressbar" aria-label="התקדמות בנושא" aria-valuenow="${Math.round(progressPercent)}" aria-valuemin="0" aria-valuemax="100"><span style="width:${progressPercent}%"></span></div>
   <div class="question-layout"><section class="question-panel" aria-labelledby="question-word"><div class="question-label">${q.word === 'play' ? 'מה פירוש המילה המודגשת במשפט?' : 'מה הפירוש בעברית?'}</div><h2 id="question-word" tabindex="-1" lang="en" dir="ltr">${esc(q.word)}</h2>${q.example ? `<p class="example" lang="en" dir="ltr">${highlightedExample(q)}</p>` : ''}<div class="mastery-slot">${p.debt ? `<div class="mastery"><span>מנקים את השאלה</span><div class="mastery-dots" aria-label="${p.streak} מתוך 3 תשובות נכונות בניסיון הראשון">${[1, 2, 3].map(n => `<span class="${p.streak >= n ? 'filled' : ''}">${p.streak >= n ? icon('check') : n}</span>`).join('')}</div><small>3 הצלחות בניסיון הראשון · טעות מתחילה מחדש</small></div>` : review && session.done ? `<div class="cleaned">${icon('check')} השאלה נקייה! כל הכבוד</div>` : ''}</div>
   <div class="answers" aria-label="תשובות אפשריות">${choices.map((meaning, i) => {
     const wrong = session.wrong.includes(meaning), right = session.done && meaning === q.meaning;
@@ -88,7 +88,6 @@ function renderQuestion(focusHeading = false) {
 }
 function nextLabel() {
   if (session.index + 1 < session.queue.length) return 'לשאלה הבאה';
-  if (session.mode === 'review' && topicStats(topic(), progress).pending.length) return 'לסבב החיזוק הבא';
   return 'לסיכום התרגול';
 }
 function feedback(q) {
@@ -104,25 +103,31 @@ function choose(index) {
 }
 function next() {
   if (!session?.done) return;
-  advanceSession(session, topic(), progress);
+  advanceSession(session);
   save();
   if (session.finished) renderSummary();
   else { choices = choicesFor(current(), topic(), topics); renderQuestion(true); window.scrollTo(0, 0); }
 }
 function renderSummary() {
   const t = topic(), s = topicStats(t, progress), review = session.mode === 'review';
-  app.innerHTML = `${header(true)}<main id="main" class="summary" tabindex="-1">${saveNotice()}<div class="summary-emblem ${s.pending.length ? '' : 'finished'}">${icon(s.pending.length ? 'star' : 'check')}</div><span class="eyebrow">${esc(t.he)} · סיכום התרגול</span><h1 tabindex="-1">${s.pending.length ? 'כל תרגול עושה אותנו טובים יותר.' : s.complete ? 'הנושא הזה בכיס שלכם!' : 'עוד צעד נהדר במסע!'}</h1><p class="summary-intro">${s.pending.length ? 'אספנו כוכבים, ועכשיו נחזק יחד את המילים שהיו קצת יותר קשות.' : 'כל הכבוד על ההתמדה. אפשר לחזור לנושאים ולהמשיך במסע.'}</p><div class="summary-stats"><div>${icon('star')}<b>${session.stars}</b><span>כוכבים חדשים</span></div><div>${icon('check')}<b>${session.firstCorrect}<small> / ${session.answered}</small></b><span>הצלחות בניסיון הראשון</span></div><div>${icon(s.pending.length ? 'refresh' : 'check')}<b>${s.pending.length}</b><span>שאלות לניקוי</span></div></div>
-  ${s.pending.length ? `<div class="review-explanation"><h2>עכשיו: סיבוב חיזוק</h2><p>מתרגלים רק את השאלות שטעינו בהן. כל שאלה מתנקה אחרי <strong>3 תשובות נכונות בניסיון הראשון</strong>. טעות נוספת מתחילה את הספירה שלה מחדש.</p><div class="pending-words">${s.pending.map(q => `<span lang="en" dir="ltr">${esc(q.word)} <small>${itemProgress(progress, q.id).streak}/3</small></span>`).join('')}</div></div><button class="button primary review-start">בואו ננקה את השאלות ${icon('refresh')}</button><button class="text-button summary-home">שומרים להמשך וחוזרים לנושאים</button>` : `<div class="completion-note">${icon('check')} ${s.complete ? 'כל המילים בנושא נלמדו, ואין שאלות שמחכות לניקוי.' : 'הטעויות נוקו! בכניסה הבאה לנושא נמשיך במילים שעוד לא תרגלנו.'}</div><button class="button primary summary-home">בחזרה לכל הנושאים ${icon('arrow')}</button>`}
+  const needsReview = !review && s.pending.length > 0;
+  const following = topics[topics.indexOf(t) + 1];
+  const heading = review && s.pending.length ? 'סיימנו את סבב החיזוק!' : s.complete ? 'הנושא הזה בכיס שלכם!' : needsReview ? 'כל תרגול עושה אותנו טובים יותר.' : 'עוד צעד נהדר במסע!';
+  const intro = needsReview ? 'עכשיו נעשה סבב חיזוק אחד למילים שהיו קצת יותר קשות.' : review && s.pending.length ? 'כל שאלה הופיעה פעם אחת. מה שעדיין צריך חיזוק נשמר לפעם הבאה, ואפשר להמשיך לנושא אחר.' : 'כל הכבוד על ההתמדה. אפשר לבחור נושא אחר ולהמשיך במסע.';
+  app.innerHTML = `${header(true)}<main id="main" class="summary" tabindex="-1">${saveNotice()}<div class="summary-emblem ${s.pending.length ? '' : 'finished'}">${icon(s.pending.length ? 'star' : 'check')}</div><span class="eyebrow">${esc(t.he)} · ${review ? 'סיכום סבב החיזוק' : 'סיכום התרגול'}</span><h1 tabindex="-1">${heading}</h1><p class="summary-intro">${intro}</p><div class="summary-stats"><div>${icon('star')}<b>${session.stars}</b><span>כוכבים חדשים</span></div><div>${icon('check')}<b>${session.firstCorrect}<small> / ${session.answered}</small></b><span>הצלחות בניסיון הראשון</span></div><div>${icon(s.pending.length ? 'refresh' : 'check')}<b>${s.pending.length}</b><span>שאלות לניקוי</span></div></div>
+  ${s.pending.length ? `<div class="review-explanation"><h2>${needsReview ? 'עכשיו: סבב חיזוק אחד' : 'שומרים את החיזוק להמשך'}</h2><p>${needsReview ? 'כל שאלה שטעינו בה תופיע פעם אחת בסבב. ' : 'אפשר לתרגל נושא אחר ולחזור לכאן מאוחר יותר. '}כל שאלה מתנקה אחרי <strong>3 תשובות נכונות בניסיון הראשון</strong>, גם בביקורים שונים. טעות נוספת מתחילה את הספירה שלה מחדש.</p><div class="pending-words">${s.pending.map(q => `<span lang="en" dir="ltr">${esc(q.word)} <small>${itemProgress(progress, q.id).streak}/3</small></span>`).join('')}</div></div>` : `<div class="completion-note">${icon('check')} ${s.complete ? 'כל המילים בנושא נלמדו, ואין שאלות שמחכות לניקוי.' : 'הטעויות נוקו! בכניסה הבאה לנושא נמשיך במילים שעוד לא תרגלנו.'}</div>`}
+  ${needsReview ? `<button class="button primary review-start">לסבב חיזוק אחד ${icon('refresh')}</button><button class="text-button summary-home">שומרים להמשך וחוזרים לנושאים</button>` : `<div class="summary-actions">${following ? `<button class="button primary next-topic">לנושא הבא: ${esc(following.he)} ${icon('arrow')}</button>` : ''}<button class="button ${following ? 'secondary' : 'primary'} summary-home">בחזרה לכל הנושאים ${icon('book')}</button></div>`}
   ${review && !s.pending.length ? '<p class="quiet-note">התמדתם, תרגלתם וניקיתם את כל הטעויות. זה בדיוק איך שמתקדמים.</p>' : ''}</main>`;
   bindHeader();
   app.querySelector('.summary-home').addEventListener('click', goHome);
   app.querySelector('.review-start')?.addEventListener('click', () => begin(t.id));
+  app.querySelector('.next-topic')?.addEventListener('click', () => begin(following.id));
   window.scrollTo(0, 0); app.querySelector('.summary h1').focus({ preventScroll: true });
 }
 function showHelp() {
   const dialog = document.createElement('dialog');
   dialog.className = 'help-dialog';
-  dialog.innerHTML = `<form method="dialog"><button class="close-dialog" aria-label="סגירה">${icon('close')}</button></form><span class="eyebrow">פשוט מתחילים</span><h2>כך משחקים במסע המילים</h2><ol><li>בוחרים נושא וקוראים את המילה או הביטוי באנגלית.</li><li>בוחרים פירוש בעברית. אחרי הבחירה האיור מתגלה.</li><li>טעיתם? יש ניסיון נוסף. אחרי שתי טעויות מתגלה התשובה.</li><li>כל תשובה נכונה מזכה בכוכב, גם בניסיון השני.</li><li>שאלה שטעינו בה צריכה 3 הצלחות בניסיון הראשון כדי להתנקות. טעות נוספת מאפסת את הספירה שלה.</li></ol><p>בנושא עם טעויות מתרגלים רק אותן. סימן חזרה מציין שאלות לניקוי; וי מציין נושא שנלמד ונוקה לגמרי.</p><p class="quiet-note">ההתקדמות נשמרת בדפדפן ובמכשיר הזה. אפשר לצאת באמצע; נמשיך מהמקום המתאים כשנחזור.</p><form method="dialog"><button class="button primary">מוכנים, מתחילים!</button></form>`;
+  dialog.innerHTML = `<form method="dialog"><button class="close-dialog" aria-label="סגירה">${icon('close')}</button></form><span class="eyebrow">פשוט מתחילים</span><h2>כך משחקים במסע המילים</h2><ol><li>בוחרים נושא וקוראים את המילה או הביטוי באנגלית.</li><li>בוחרים פירוש בעברית. אחרי הבחירה האיור מתגלה.</li><li>טעיתם? יש ניסיון נוסף. אחרי שתי טעויות מתגלה התשובה.</li><li>כל תשובה נכונה מזכה בכוכב, גם בניסיון השני.</li><li>שאלה שטעינו בה צריכה 3 הצלחות בניסיון הראשון כדי להתנקות. טעות נוספת מאפסת את הספירה שלה.</li></ol><p>אחרי נושא עושים לכל היותר סבב חיזוק אחד, ובו כל שאלה מופיעה פעם אחת. אחר כך בוחרים נושא אחר או חוזרים לרשימה. ההצלחות לניקוי מצטברות בין ביקורים. בנושא עם טעויות מתרגלים רק אותן. סימן חזרה מציין שאלות לניקוי; וי מציין נושא שנלמד ונוקה לגמרי.</p><p class="quiet-note">ההתקדמות נשמרת בדפדפן ובמכשיר הזה. אפשר לצאת באמצע; נמשיך מהמקום המתאים כשנחזור.</p><form method="dialog"><button class="button primary">מוכנים, מתחילים!</button></form>`;
   document.body.append(dialog); dialog.addEventListener('close', () => dialog.remove()); dialog.showModal();
 }
 document.addEventListener('keydown', event => {

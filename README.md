@@ -24,7 +24,7 @@ npm test
 - A first mistake gives a second attempt; two mistakes reveal the correct answer.
 - Each correct answer earns one star, including a second-attempt answer. Revealed answers earn none.
 - Any mistake marks that question for cleanup. It needs **three first-attempt correct answers** on separate presentations. A new mistake resets that question's count to zero. A correct second attempt earns a star but no cleanup credit.
-- After the learning round, a summary leads into cleanup. Cleanup repeats the remaining questions until all are cleared; the child can save and leave at any time.
+- After the learning round, a summary leads into cleanup. There is exactly one cleanup pass: each pending question appears once, even if it remains uncleared. After cleanup (or a perfect learning round), choose the next topic or return to the topic list. Pending errors and cleanup credit persist for later visits. The last topic offers a return to the list.
 - Reentering a topic with errors gives **only those errors**. Once cleared, any unseen words are offered on the next entry. Already-correct words stay learned.
 - The home screen marks pending cleanup with a circular arrow and fully completed topics with a check. A completed topic can be replayed.
 - Progress and stars are stored in `localStorage` in the current browser and device. There is no sign-in, server, analytics, or cross-device synchronization. Clearing site data also clears progress.
