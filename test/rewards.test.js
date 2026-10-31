@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { blankProgress, sanitizeProgress, startSession, answerQuestion, advanceSession, STAR_FIELDS } from '../src/engine.js';
-import { rewardSummary, progressShareText, whatsappShareUrl } from '../src/rewards.js';
+import { rewardSummary, progressShareText, whatsappShareUrl, streakLevel } from '../src/rewards.js';
 const t = { id: 'test', he: 'בעלי חיים', items: [{id:'a',word:'cat',meaning:'חתול'},{id:'b',word:'dog',meaning:'כלב'}] };
 const fixed = () => .9999;
 
@@ -53,11 +53,17 @@ test('malformed counters cannot exceed the saved total or remove existing stars'
   assert.deepEqual(p.combo,{current:5,best:5});
   assert.equal(p.starBreakdown.unknown,undefined);
 });
-test('WhatsApp prepares a readable draft with totals, category breakdown and a correct encoded Hebrew URL', () => {
+test('WhatsApp prepares an encoded Hebrew draft with totals and no topic breakdown', () => {
   const p=blankProgress(),s=startSession(t,p,fixed);answerQuestion(s,p,t.items[0],'חתול');
   const text=progressShareText(p,[t]),url=new URL(whatsappShareUrl(p,[t]));
   assert.equal(url.hostname,'wa.me'); assert.equal(url.searchParams.get('text'),text);
-  assert.ok(text.includes('צברתי 1 כוכב')); assert.ok(text.includes('בעלי חיים: 1'));
+  assert.ok(text.includes('צברתי 1 כוכב')); assert.ok(!text.includes(t.he)); assert.ok(!text.includes('לפי נושא')); assert.ok(!text.includes('•'));
   assert.ok(text.includes('מתוכם בסבבי חיזוק: 0'));
-  assert.ok(text.endsWith('https://english2026-practice.glossysnow66.chatgpt.site/'));
+  assert.ok(text.endsWith('https://english2026-practice.no-umm.chatgpt.site/'));
+});
+
+test('streak animation unlocks five levels every two answers and caps at ten', () => {
+  for (const [streak, level] of [[0,0],[1,0],[2,1],[3,1],[4,2],[5,2],[6,3],[7,3],[8,4],[9,4],[10,5],[11,5],[100,5]]) {
+    assert.equal(streakLevel(streak),level,`streak ${streak}`);
+  }
 });

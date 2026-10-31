@@ -1,5 +1,8 @@
 import { topicStats } from './engine.js';
 
+// Every two correct answers unlock a level; ten and above stay at maximum.
+export const streakLevel = streak => Math.max(0, Math.min(5, Math.floor(streak / 2)));
+
 export function rewardSummary(progress, topics) {
   const rows = topics.map(topic => {
     const b = progress.starBreakdown[topic.id] || {};
@@ -28,9 +31,7 @@ export function progressShareText(progress, topics) {
     `🔥 שיא הרצף: ${s.bestStreak} ${s.bestStreak === 1 ? 'תשובה נכונה' : 'תשובות נכונות'}`,
     `השלמתי ${s.completed} מתוך ${topics.length} נושאים.`,
   ];
-  const earned = s.rows.filter(row => row.total > 0);
-  if (earned.length) lines.push('', 'הכוכבים שלי לפי נושא:', ...earned.map(row => `• ${row.name}: ${row.total}`));
-  lines.push('', 'https://english2026-practice.glossysnow66.chatgpt.site/');
+  lines.push('', 'https://english2026-practice.no-umm.chatgpt.site/');
   return lines.join('\n');
 }
 

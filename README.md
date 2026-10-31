@@ -34,7 +34,9 @@ npm test
 - Every correct answer advances a persistent success streak, including a second-attempt success. Any wrong selection resets it immediately. From two successes the practice toolbar shows a looping flame-and-spark badge; reduced-motion preferences are respected.
 - The star counter opens a details screen without losing the current question. New awards are tracked per topic and split into learning/review × first/second attempt. Review totals are a subset of first/second totals, not extra stars.
 - Existing version-1 progress is migrated without losing stars or cleanup credit. Old stars remain an unclassified previous total because their historical category/attempt data was never stored.
-- The WhatsApp button opens a prefilled progress message for the user to choose a recipient and send. The app does not send messages itself.
+- The WhatsApp button opens a prefilled progress message with overall totals and no topic breakdown for the user to choose a recipient and send. The app does not send messages itself.
+
+The streak animation grows through five levels at 2, 4, 6, 8 and 10 correct answers. It starts with a gentle pulse, then gains speed, glow and sparks, and stays at maximum from 10 onward. All levels retain the same footprint and honor reduced motion.
 
 ## Structure
 

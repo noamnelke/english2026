@@ -1,4 +1,4 @@
-import { rewardSummary, whatsappShareUrl } from './rewards.js';
+import { rewardSummary, whatsappShareUrl, streakLevel } from './rewards.js';
 import { planAnswerWindow } from './answer-visuals.js';
 import { createImagePreloader } from './preload.js';
 import { STORAGE_KEY, blankProgress, sanitizeProgress, topicStats, itemProgress, startSession, answerQuestion, advanceSession } from './engine.js';
@@ -133,8 +133,10 @@ function renderQuestion(focusHeading = false) {
 function sessionRewardBadge() {
   const streak = progress.combo.current;
   if (streak < 2) return `<span class="session-stars">${icon('star')} ${session.stars} כוכבים בתרגול</span>`;
+  const level = streakLevel(streak);
+  const sparkCount = (level - 1) * 2;
   const count = streak < 1000 ? streak : new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(streak);
-  return `<div class="combo-badge" role="status" aria-label="${streak} תשובות נכונות ברצף"><span class="combo-sparks" aria-hidden="true">${[8, 24, 42, 61, 78, 94].map((x, i) => `<span class="combo-spark" style="--spark-x:${x}%;--spark-delay:-${i * .31}s">${icon('star')}</span>`).join('')}</span><span class="combo-flame">${icon('flame')}</span><strong>${count}</strong><span class="combo-label">ברצף!</span></div>`;
+  return `<div class="combo-badge" data-combo-level="${level}" role="status" aria-label="${streak} תשובות נכונות ברצף"><span class="combo-sparks" aria-hidden="true">${Array.from({ length: sparkCount }, (_, i) => 8 + i * 84 / Math.max(1, sparkCount - 1)).map((x, i) => `<span class="combo-spark" style="--spark-x:${x}%;--spark-delay:-${i * .31}s">${icon('star')}</span>`).join('')}</span><span class="combo-flame">${icon('flame')}</span><strong>${count}</strong><span class="combo-label">ברצף!</span></div>`;
 }
 function openRewards() {
   if (!showingRewards) rewardsReturnScroll = window.scrollY;
