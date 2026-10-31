@@ -1,3 +1,4 @@
+import { rewardSummary, whatsappShareUrl } from './rewards.js';
 import { planAnswerWindow } from './answer-visuals.js';
 import { createImagePreloader } from './preload.js';
 import { STORAGE_KEY, blankProgress, sanitizeProgress, topicStats, itemProgress, startSession, answerQuestion, advanceSession } from './engine.js';
@@ -6,6 +7,7 @@ const app = document.querySelector('#app');
 const prepareImages = createImagePreloader();
 const prepareAnswerImages = createImagePreloader(undefined, { limit: 8 });
 let answerPlans = new Map();
+let showingRewards = false, rewardsReturnScroll = 0;
 let topics, progress, session = null, choices = [], filter = 'all', saveFailed = false;
 const icons = {
   star: '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>',
@@ -14,6 +16,8 @@ const icons = {
   refresh: '<path d="M20 8a8 8 0 1 0 0 8M20 3v5h-5"/>',
   book: '<path d="M12 6C9 3 5 4 3 5v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-2-1-6-2-9 1zm0 0v14"/>',
   question: '<path d="M9 8a3 3 0 1 1 5 2c-1 1-2 1-2 4m0 3v.1"/><circle cx="12" cy="12" r="10"/>',
+  flame: '<path d="M12 2c1 5-5 7-5 12a5 5 0 0 0 10 0c0-3-2-5-3-6 0 3-2 4-2 6-2-3 1-5 0-12Z"/>',
+  share: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4"/>',
   close: '<path d="m6 6 12 12M6 18 18 6"/>',
 };
 const icon = (name, cls = '') => `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]}</svg>`;
@@ -28,15 +32,18 @@ function save() {
   catch { saveFailed = true; }
 }
 function saveNotice() { return saveFailed ? '<p class="save-warning" role="alert">הדפדפן לא מאפשר לשמור התקדמות. אפשר לתרגל, אבל ההתקדמות תישמר רק כל עוד העמוד פתוח.</p>' : ''; }
-function header(inPractice = false) {
-  return `<header class="site-header"><a href="#" class="brand" aria-label="מסע המילים, למסך הראשי"><span class="brand-icon">${icon('book')}</span><span>מסע המילים<small lang="en" dir="ltr">ENGLISH 2026</small></span></a><div class="header-end">${inPractice ? '<button class="text-button leave">שומרים ויוצאים ' + icon('arrow') + '</button>' : '<button class="text-button help-button">איך משחקים? ' + icon('question') + '</button>'}<span class="star-counter" aria-label="${progress.stars} כוכבים בסך הכול">${icon('star')}<b>${progress.stars}</b></span></div></header>`;
+function header(inPractice = false, inRewards = false) {
+  const action = inRewards ? `<button class="text-button stats-back" aria-label="${session ? 'בחזרה לתרגול' : 'בחזרה לרשימת הנושאים'}">בחזרה ${icon('arrow')}</button>` : inPractice ? '<button class="text-button leave">שומרים ויוצאים ' + icon('arrow') + '</button>' : '<button class="text-button help-button">איך משחקים? ' + icon('question') + '</button>';
+  return `<header class="site-header ${inRewards ? 'rewards-header' : ''}"><a href="#" class="brand" aria-label="מסע המילים, למסך הראשי"><span class="brand-icon">${icon('book')}</span><span>מסע המילים<small lang="en" dir="ltr">ENGLISH 2026</small></span></a><div class="header-end">${action}<button type="button" class="star-counter" aria-label="פירוט ${progress.stars} הכוכבים שלי" title="פירוט הכוכבים שלי">${icon('star')}<b>${progress.stars}</b></button></div></header>`;
 }
 function bindHeader() {
   app.querySelector('.brand').addEventListener('click', e => { e.preventDefault(); goHome(); });
   app.querySelector('.leave')?.addEventListener('click', goHome);
   app.querySelector('.help-button')?.addEventListener('click', showHelp);
+  app.querySelector('.star-counter').addEventListener('click', openRewards);
+  app.querySelectorAll('.stats-back').forEach(button => button.addEventListener('click', closeRewards));
 }
-function goHome() { session = null; save(); renderHome(); window.scrollTo(0, 0); }
+function goHome() { showingRewards = false; session = null; save(); renderHome(); window.scrollTo(0, 0); }
 
 function renderHome() {
   prepareImages([]);
@@ -103,7 +110,7 @@ function renderQuestion(focusHeading = false) {
     const key = `<span class="answer-key">${right ? icon('check') : wrong ? icon('close') : i + 1}</span>`;
     const leading = visual ? `<span class="answer-leading">${visual.type === 'color' ? `<span class="answer-swatch" style="--answer-color:${visual.color}" aria-hidden="true"></span>` : `<span data-answer-image="${i}"></span>`}${key}</span>` : key;
     return `<button class="answer ${visual ? 'has-visual' : ''} ${wrong ? 'wrong' : ''} ${right ? 'right' : ''}" data-answer="${i}" ${session.done || wrong ? 'disabled' : ''}>${leading}<span class="answer-label">${esc(meaning)}</span></button>`;
-  }).join('')}</div><div class="feedback ${session.result || ''}" role="status" aria-live="polite">${feedback(q)}</div><div class="question-actions">${session.done ? `<button class="button primary next">${nextLabel()} ${icon('arrow')}</button>` : '<span class="keyboard-hint">בוחרים תשובה אחת · אפשר גם במקשים 1–4</span>'}<span class="session-stars">${icon('star')} ${session.stars} כוכבים בתרגול</span></div></section>
+  }).join('')}</div><div class="feedback ${session.result || ''}" role="status" aria-live="polite">${feedback(q)}</div><div class="question-actions">${session.done ? `<button class="button primary next">${nextLabel()} ${icon('arrow')}</button>` : '<span class="keyboard-hint">בוחרים תשובה אחת · אפשר גם במקשים 1–4</span>'}${sessionRewardBadge()}</div></section>
   <aside class="illustration-panel ${session.reveal ? 'revealed' : ''}" aria-label="איור המילה">${session.reveal ? `<span class="illustration-label">עכשיו גם רואים את זה</span><span data-question-image></span><div class="image-caption">${session.done ? `<strong lang="en" dir="ltr">${esc(q.word)}</strong><span>${esc(q.meaning)}</span>` : 'התמונה יכולה לעזור. עוד ניסיון?'}</div>` : `<div class="hidden-art">${icon('question')}<h3>קודם חושבים,<br>אחר כך מגלים.</h3><p>האיור יופיע אחרי<br>שתבחרו תשובה.</p><span class="secret-spark">✦</span></div>`}</aside></div><div class="practice-footnote">${review ? `${topicStats(t, progress).pending.length} שאלות עדיין מחכות לניקוי · אפשר לשמור ולצאת בכל רגע` : 'טעות היא הזדמנות ללמוד. יש שני ניסיונות בכל שאלה.'}</div></main>`;
   bindHeader();
   if (session.reveal) {
@@ -122,6 +129,39 @@ function renderQuestion(focusHeading = false) {
   app.querySelectorAll('[data-answer]').forEach(button => button.addEventListener('click', () => choose(Number(button.dataset.answer))));
   app.querySelector('.next')?.addEventListener('click', next);
   if (focusHeading) app.querySelector('#question-word').focus({ preventScroll: true });
+}
+function sessionRewardBadge() {
+  const streak = progress.combo.current;
+  if (streak < 2) return `<span class="session-stars">${icon('star')} ${session.stars} כוכבים בתרגול</span>`;
+  const count = streak < 1000 ? streak : new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(streak);
+  return `<div class="combo-badge" role="status" aria-label="${streak} תשובות נכונות ברצף"><span class="combo-sparks" aria-hidden="true">${[8, 24, 42, 61, 78, 94].map((x, i) => `<span class="combo-spark" style="--spark-x:${x}%;--spark-delay:-${i * .31}s">${icon('star')}</span>`).join('')}</span><span class="combo-flame">${icon('flame')}</span><strong>${count}</strong><span class="combo-label">ברצף!</span></div>`;
+}
+function openRewards() {
+  if (!showingRewards) rewardsReturnScroll = window.scrollY;
+  showingRewards = true;
+  renderRewards();
+  window.scrollTo(0, 0);
+  app.querySelector('#rewards-heading').focus({ preventScroll: true });
+}
+function closeRewards() {
+  showingRewards = false;
+  if (!session) renderHome();
+  else if (session.finished) renderSummary();
+  else renderQuestion(true);
+  app.querySelector('.star-counter').focus({ preventScroll: true });
+  window.scrollTo(0, rewardsReturnScroll);
+}
+function renderRewards() {
+  const s = rewardSummary(progress, topics);
+  const orderedRows = [...s.rows].sort((a, b) => b.total - a.total);
+  const n = value => value.toLocaleString('he-IL');
+  app.innerHTML = `${header(false, true)}<main id="main" class="rewards-page" tabindex="-1">${saveNotice()}<div class="rewards-heading"><span class="eyebrow">כל תשובה נכונה היא הצלחה</span><h1 id="rewards-heading" tabindex="-1">הכוכבים שלי</h1><p>הנה כל מה שהצלחתם לצבור בדרך.</p></div>
+  <section class="rewards-hero" aria-label="ההישגים שלי"><div class="rewards-total">${icon('star')}<span><strong>${n(s.total)}</strong><span>כוכבים בסך הכול</span></span></div><div class="rewards-record"><span class="record-icon">${icon('flame')}</span><span><b>${n(s.bestStreak)}</b><span>שיא הרצף שלי</span></span></div><div class="rewards-record"><span class="record-icon blue">${icon('check')}</span><span><b>${s.completed}<small> / ${topics.length}</small></b><span>נושאים שהושלמו</span></span></div></section>
+  <section class="rewards-metrics" aria-label="כוכבים לפי סוג תשובה"><div>${icon('check')}<strong>${n(s.first)}</strong><span>בניסיון הראשון</span></div><div>${icon('star')}<strong>${n(s.second)}</strong><span>בניסיון השני</span></div><div>${icon('refresh')}<strong>${n(s.review)}</strong><span>מתוכם בסבבי חיזוק</span></div></section><p class="rewards-explainer">כוכבי החיזוק כלולים גם בספירת הניסיון הראשון והשני.</p>
+  ${s.previous ? `<aside class="previous-stars">${icon('star')}<div><strong>הכוכבים הקודמים נשמרו: ${n(s.previous)}</strong><p>הפירוט לפי נושא וסוג תשובה מתחיל מהעדכון הזה. כוכבים חדשים עם פירוט: ${n(s.classified)}.</p></div></aside>` : ''}
+  <div class="rewards-actions"><a class="button whatsapp-share" href="${esc(whatsappShareUrl(progress, topics))}" target="_blank" rel="noopener noreferrer" aria-label="שתפו את ההתקדמות בווטסאפ">${icon('share')} שתפו בווטסאפ</a><button class="button secondary stats-back icon-only" aria-label="${session ? 'בחזרה לתרגול' : 'בחזרה לרשימת הנושאים'}">${icon('arrow')}</button></div>
+  <div class="rewards-section-heading"><h2>הכוכבים בכל נושא</h2><span>${topics.length} נושאים במסע</span></div><section class="rewards-topics" aria-label="פירוט לפי נושא">${orderedRows.map(row => `<article class="rewards-topic ${row.total ? 'earned' : 'zero'}"><div class="rewards-topic-heading"><h3>${esc(row.name)}</h3><span class="topic-stars">${icon('star')}<b>${n(row.total)}</b></span></div><dl><div><dt>ניסיון ראשון</dt><dd>${n(row.first)}</dd></div><div><dt>ניסיון שני</dt><dd>${n(row.second)}</dd></div><div><dt>מתוכם חיזוק</dt><dd>${n(row.review)}</dd></div></dl></article>`).join('')}</section><p class="quiet-note rewards-footnote">ההתקדמות נשמרת בדפדפן ובמכשיר הזה.</p></main>`;
+  bindHeader();
 }
 function nextLabel() {
   if (session.index + 1 < session.queue.length) return 'לשאלה הבאה';
@@ -170,7 +210,7 @@ function showHelp() {
   document.body.append(dialog); dialog.addEventListener('close', () => dialog.remove()); dialog.showModal();
 }
 document.addEventListener('keydown', event => {
-  if (!session || session.finished || event.altKey || event.ctrlKey || event.metaKey || document.querySelector('dialog[open]')) return;
+  if (showingRewards || !session || session.finished || event.altKey || event.ctrlKey || event.metaKey || document.querySelector('dialog[open]')) return;
   if (/^[1-4]$/.test(event.key) && !session.done) { event.preventDefault(); choose(Number(event.key) - 1); }
 });
 try {

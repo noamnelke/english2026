@@ -1,16 +1,34 @@
 export const STORAGE_KEY = 'english2026-progress-v1';
-export const blankProgress = () => ({ version: 1, stars: 0, items: {} });
+export const STAR_FIELDS = ['learningFirst', 'learningSecond', 'reviewFirst', 'reviewSecond'];
+export const blankProgress = () => ({ version: 2, stars: 0, items: {}, starBreakdown: {}, combo: { current: 0, best: 0 } });
 export const itemProgress = (progress, id) => progress.items[id] || { seen: false, debt: false, streak: 0 };
 
 export function sanitizeProgress(value, topics) {
   const clean = blankProgress();
-  if (!value || value.version !== 1 || typeof value.items !== 'object' || !value.items) return clean;
+  if (!value || ![1, 2].includes(value.version) || typeof value.items !== 'object' || !value.items) return clean;
   clean.stars = Number.isSafeInteger(value.stars) && value.stars >= 0 ? value.stars : 0;
   for (const topic of topics) for (const q of topic.items) {
     const p = value.items[q.id];
     if (!p || typeof p !== 'object') continue;
     const debt = p.debt === true;
     clean.items[q.id] = { seen: p.seen === true, debt, streak: debt ? Math.max(0, Math.min(2, Number.isInteger(p.streak) ? p.streak : 0)) : 0 };
+  }
+  let remaining = clean.stars;
+  if (value.version === 2) {
+    for (const topic of topics) {
+      const raw = value.starBreakdown?.[topic.id];
+      if (!raw || typeof raw !== 'object') continue;
+      const bucket = {};
+      for (const field of STAR_FIELDS) {
+        const count = Number.isSafeInteger(raw[field]) && raw[field] >= 0 ? raw[field] : 0;
+        bucket[field] = Math.min(count, remaining);
+        remaining -= bucket[field];
+      }
+      if (STAR_FIELDS.some(field => bucket[field] > 0)) clean.starBreakdown[topic.id] = bucket;
+    }
+    const count = n => Number.isSafeInteger(n) && n >= 0 ? Math.min(n, clean.stars) : 0;
+    clean.combo.current = count(value.combo?.current);
+    clean.combo.best = Math.max(clean.combo.current, count(value.combo?.best));
   }
   return clean;
 }
@@ -46,6 +64,11 @@ export function answerQuestion(session, progress, question, selectedMeaning) {
     session.done = true;
     session.result = session.attempts === 1 ? 'correct' : 'second';
     progress.stars++;
+    const bucket = progress.starBreakdown[session.topicId] ||= Object.fromEntries(STAR_FIELDS.map(field => [field, 0]));
+    const field = (session.mode === 'review' ? 'review' : 'learning') + (session.attempts === 1 ? 'First' : 'Second');
+    bucket[field]++;
+    progress.combo.current++;
+    progress.combo.best = Math.max(progress.combo.best, progress.combo.current);
     session.stars++;
     session.answered++;
     if (session.attempts === 1) {
@@ -53,6 +76,7 @@ export function answerQuestion(session, progress, question, selectedMeaning) {
       if (p.debt) { p.streak++; if (p.streak >= 3) { p.debt = false; p.streak = 0; } }
     }
   } else {
+    progress.combo.current = 0;
     p.debt = true;
     p.streak = 0;
     session.wrong.push(selectedMeaning);

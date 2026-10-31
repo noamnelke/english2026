@@ -29,6 +29,13 @@ npm test
 - The home screen marks pending cleanup with a circular arrow and fully completed topics with a check. A completed topic can be replayed.
 - Progress and stars are stored in `localStorage` in the current browser and device. There is no sign-in, server, analytics, or cross-device synchronization. Clearing site data also clears progress.
 
+## Streaks and star details
+
+- Every correct answer advances a persistent success streak, including a second-attempt success. Any wrong selection resets it immediately. From two successes the practice toolbar shows a looping flame-and-spark badge; reduced-motion preferences are respected.
+- The star counter opens a details screen without losing the current question. New awards are tracked per topic and split into learning/review × first/second attempt. Review totals are a subset of first/second totals, not extra stars.
+- Existing version-1 progress is migrated without losing stars or cleanup credit. Old stars remain an unclassified previous total because their historical category/attempt data was never stored.
+- The WhatsApp button opens a prefilled progress message for the user to choose a recipient and send. The app does not send messages itself.
+
 ## Structure
 
 - `src/preload.js`: bounded preload/decode pools for two main illustrations and up to eight answer thumbnails. Current assets have high priority; the next question loads in the background.
