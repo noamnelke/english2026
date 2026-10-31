@@ -8,3 +8,5 @@ node_modules/
 .sites-checkout-*/
 test-results/
 *.tar.gz
+.env
+.env.*

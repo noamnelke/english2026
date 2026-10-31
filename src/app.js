@@ -1,3 +1,4 @@
+import { createPronunciationPlayer, showQuestionImage, pronunciationSource } from './audio.js';
 import { rewardSummary, whatsappShareUrl, streakLevel } from './rewards.js';
 import { planAnswerWindow } from './answer-visuals.js';
 import { createImagePreloader } from './preload.js';
@@ -6,6 +7,8 @@ import { STORAGE_KEY, blankProgress, sanitizeProgress, topicStats, itemProgress,
 const app = document.querySelector('#app');
 const prepareImages = createImagePreloader();
 const prepareAnswerImages = createImagePreloader(undefined, { limit: 8 });
+let audioState = 'idle';
+const pronunciation = createPronunciationPlayer(undefined, state => { audioState = state; updateAudioControls(); });
 let answerPlans = new Map();
 let showingRewards = false, rewardsReturnScroll = 0;
 let topics, progress, session = null, choices = [], filter = 'all', saveFailed = false;
@@ -18,6 +21,7 @@ const icons = {
   question: '<path d="M9 8a3 3 0 1 1 5 2c-1 1-2 1-2 4m0 3v.1"/><circle cx="12" cy="12" r="10"/>',
   flame: '<path d="M12 2c1 5-5 7-5 12a5 5 0 0 0 10 0c0-3-2-5-3-6 0 3-2 4-2 6-2-3 1-5 0-12Z"/>',
   share: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4"/>',
+  speaker: '<path d="M11 5 6 9H3v6h3l5 4V5Zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/>',
   close: '<path d="m6 6 12 12M6 18 18 6"/>',
 };
 const icon = (name, cls = '') => `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]}</svg>`;
@@ -43,9 +47,10 @@ function bindHeader() {
   app.querySelector('.star-counter').addEventListener('click', openRewards);
   app.querySelectorAll('.stats-back').forEach(button => button.addEventListener('click', closeRewards));
 }
-function goHome() { showingRewards = false; session = null; save(); renderHome(); window.scrollTo(0, 0); }
+function goHome() { pronunciation.stop(); showingRewards = false; session = null; save(); renderHome(); window.scrollTo(0, 0); }
 
 function renderHome() {
+  pronunciation.prepare([]);
   prepareImages([]);
   prepareAnswerImages([]);
   answerPlans.clear();
@@ -60,7 +65,7 @@ function renderHome() {
     <section class="journey-stats" aria-label="ההתקדמות שלי"><div><span class="stat-symbol blue">${icon('book')}</span><span><b>${completed}<small> / ${topics.length}</small></b><span>נושאים שהושלמו</span></span></div><div><span class="stat-symbol gold">${icon('star')}</span><span><b>${progress.stars}</b><span>כוכבים שאספתי</span></span></div><div><span class="stat-symbol mint">${icon('check')}</span><span><b>${mastered}<small> / ${total}</small></b><span>מילים וביטויים שלמדתי</span></span></div></section>
     <section class="topics-section"><div class="section-heading"><div><span class="eyebrow">המסע שלי</span><h2>מה נתרגל היום?</h2></div><span class="section-count">${topics.length} נושאים · ${total} מילים וביטויים</span></div><div class="topic-tabs" role="group" aria-label="סינון נושאים"><button data-filter="all" class="${filter === 'all' ? 'active' : ''}" aria-pressed="${filter === 'all'}">כל הנושאים</button><button data-filter="pending" class="${filter === 'pending' ? 'active' : ''}" aria-pressed="${filter === 'pending'}">${icon('refresh')} מחכים לניקוי${pending ? ` <span>${pending}</span>` : ''}</button><button data-filter="complete" class="${filter === 'complete' ? 'active' : ''}" aria-pressed="${filter === 'complete'}">${icon('check')} הושלמו</button></div>
     <div class="topics-grid">${visible.length ? visible.map(t => topicCard(t)).join('') : `<div class="empty-state">${icon(filter === 'pending' ? 'check' : 'book')}<h3>${filter === 'pending' ? 'אין שאלות שמחכות לניקוי' : 'ההצלחה הראשונה כבר בדרך'}</h3><p>${filter === 'pending' ? 'אפשר לבחור נושא ולהמשיך לגלות מילים.' : 'בוחרים נושא, מתרגלים ומקבלים כאן וי.'}</p><button class="button secondary all-topics">לכל הנושאים</button></div>`}</div></section>
-    <footer>נוצר באהבה ללימוד אנגלית · המילים והאיורים מהחוברת<br><span>ההתקדמות נשמרת בדפדפן הזה, במכשיר הזה.</span></footer></main>`;
+    <footer>נוצר באהבה ללימוד אנגלית · המילים והאיורים מהחוברת · הקריינות נוצרה ב־AI<br><span>ההתקדמות נשמרת בדפדפן הזה, במכשיר הזה.</span></footer></main>`;
   bindHeader();
   app.querySelectorAll('[data-topic]').forEach(button => button.addEventListener('click', () => begin(button.dataset.topic)));
   app.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => { filter = button.dataset.filter; renderHome(); }));
@@ -73,6 +78,7 @@ function topicCard(t) {
   return `<button class="topic-card color-${index % 5}" data-topic="${t.id}"><div class="card-top"><span class="topic-number">${String(index + 1).padStart(2, '0')}</span>${status}</div><div class="topic-art"><img loading="lazy" src="${asset(representative.asset)}" alt=""></div><h3>${esc(t.he)}</h3><p lang="en" dir="ltr">${esc(t.en)}</p><div class="topic-meter" aria-hidden="true"><span style="width:${s.mastered / t.items.length * 100}%"></span></div><div class="card-bottom"><span>${s.pending.length ? 'ממשיכים עם הטעויות בלבד' : `${s.mastered} מתוך ${t.items.length} נלמדו`}</span><span class="card-arrow">${icon('arrow')}</span></div></button>`;
 }
 function begin(id) {
+  pronunciation.stop();
   session = startSession(topics.find(t => t.id === id), progress);
   answerPlans.clear();
   renderQuestion(); window.scrollTo(0, 0);
@@ -90,6 +96,8 @@ function renderQuestion(focusHeading = false) {
   const q = current(), t = topic(), p = itemProgress(progress, q.id);
   const review = session.mode === 'review';
   const nextQuestion = t.items.find(item => item.id === session.queue[session.index + 1]);
+  pronunciation.prepare([pronunciationSource(q), nextQuestion && pronunciationSource(nextQuestion)]);
+  const showImage = showQuestionImage(session.result);
   const illustration = prepareImages([asset(q.asset), nextQuestion && asset(nextQuestion.asset)]);
   answerPlans = planAnswerWindow(session.queue.slice(session.index, session.index + 2), t, topics, answerPlans);
   const plan = answerPlans.get(q.id);
@@ -111,9 +119,9 @@ function renderQuestion(focusHeading = false) {
     const leading = visual ? `<span class="answer-leading">${visual.type === 'color' ? `<span class="answer-swatch" style="--answer-color:${visual.color}" aria-hidden="true"></span>` : `<span data-answer-image="${i}"></span>`}${key}</span>` : key;
     return `<button class="answer ${visual ? 'has-visual' : ''} ${wrong ? 'wrong' : ''} ${right ? 'right' : ''}" data-answer="${i}" ${session.done || wrong ? 'disabled' : ''}>${leading}<span class="answer-label">${esc(meaning)}</span></button>`;
   }).join('')}</div><div class="feedback ${session.result || ''}" role="status" aria-live="polite">${feedback(q)}</div><div class="question-actions">${session.done ? `<button class="button primary next">${nextLabel()} ${icon('arrow')}</button>` : '<span class="keyboard-hint">בוחרים תשובה אחת · אפשר גם במקשים 1–4</span>'}${sessionRewardBadge()}</div></section>
-  <aside class="illustration-panel ${session.reveal ? 'revealed' : ''}" aria-label="איור המילה">${session.reveal ? `<span class="illustration-label">עכשיו גם רואים את זה</span><span data-question-image></span><div class="image-caption">${session.done ? `<strong lang="en" dir="ltr">${esc(q.word)}</strong><span>${esc(q.meaning)}</span>` : 'התמונה יכולה לעזור. עוד ניסיון?'}</div>` : `<div class="hidden-art">${icon('question')}<h3>קודם חושבים,<br>אחר כך מגלים.</h3><p>האיור יופיע אחרי<br>שתבחרו תשובה.</p><span class="secret-spark">✦</span></div>`}</aside></div><div class="practice-footnote">${review ? `${topicStats(t, progress).pending.length} שאלות עדיין מחכות לניקוי · אפשר לשמור ולצאת בכל רגע` : 'טעות היא הזדמנות ללמוד. יש שני ניסיונות בכל שאלה.'}</div></main>`;
+  <aside class="illustration-panel ${showImage ? 'revealed' : session.reveal ? 'audio-hint' : ''}" aria-label="${showImage ? 'איור המילה' : 'הגיית המילה'}">${showImage ? `<span class="illustration-label">עכשיו גם רואים את זה</span><span data-question-image></span><div class="image-caption"><strong lang="en" dir="ltr">${esc(q.word)}</strong><span>${esc(q.meaning)}</span></div>${replayControl(true)}` : session.reveal ? `<div class="listening-art"><span class="listening-rings" aria-hidden="true"></span>${replayControl()}<p>מקשיבים למילה באנגלית</p><span class="audio-status" role="status" aria-live="polite"></span></div>` : `<div class="hidden-art">${icon('question')}<h3>קודם חושבים,<br>אחר כך מקשיבים.</h3><p>בחרו תשובה<br>ושמעו את המילה באנגלית.</p><span class="secret-spark">✦</span></div>`}</aside></div><div class="practice-footnote">${review ? `${topicStats(t, progress).pending.length} שאלות עדיין מחכות לניקוי · אפשר לשמור ולצאת בכל רגע` : 'טעות היא הזדמנות ללמוד. יש שני ניסיונות בכל שאלה.'}</div></main>`;
   bindHeader();
-  if (session.reveal) {
+  if (showImage) {
     illustration.className = 'question-image';
     illustration.alt = `איור של ${q.word}`;
     app.querySelector('[data-question-image]').replaceWith(illustration);
@@ -128,7 +136,21 @@ function renderQuestion(focusHeading = false) {
   });
   app.querySelectorAll('[data-answer]').forEach(button => button.addEventListener('click', () => choose(Number(button.dataset.answer))));
   app.querySelector('.next')?.addEventListener('click', next);
+  app.querySelector('.replay-word')?.addEventListener('click', () => { void pronunciation.play(pronunciationSource(current())); });
+  updateAudioControls();
   if (focusHeading) app.querySelector('#question-word').focus({ preventScroll: true });
+}
+function replayControl(compact = false) {
+  return `<button type="button" class="replay-word ${compact ? 'compact' : ''}" aria-label="השמיעו שוב את המילה באנגלית">${icon('speaker')}<span>לשמוע שוב</span></button>${compact ? '<span class="audio-status compact-audio-status" role="status" aria-live="polite"></span>' : ''}`;
+}
+function updateAudioControls() {
+  const button = app.querySelector('.replay-word');
+  if (!button) return;
+  button.classList.toggle('is-playing', audioState === 'playing');
+  button.classList.toggle('is-loading', audioState === 'loading');
+  const status = app.querySelector('.audio-status');
+  if (status) status.textContent = audioState === 'error' ? 'לא הצלחנו להשמיע. לחצו כדי לנסות שוב.' : audioState === 'loading' ? 'טוענים את ההקלטה…' : '';
+  button.title = audioState === 'error' ? 'נסו להשמיע שוב' : 'השמיעו שוב את המילה באנגלית';
 }
 function sessionRewardBadge() {
   const streak = progress.combo.current;
@@ -139,6 +161,7 @@ function sessionRewardBadge() {
   return `<div class="combo-badge" data-combo-level="${level}" role="status" aria-label="${streak} תשובות נכונות ברצף"><span class="combo-sparks" aria-hidden="true">${Array.from({ length: sparkCount }, (_, i) => 8 + i * 84 / Math.max(1, sparkCount - 1)).map((x, i) => `<span class="combo-spark" style="--spark-x:${x}%;--spark-delay:-${i * .31}s">${icon('star')}</span>`).join('')}</span><span class="combo-flame">${icon('flame')}</span><strong>${count}</strong><span class="combo-label">ברצף!</span></div>`;
 }
 function openRewards() {
+  pronunciation.stop();
   if (!showingRewards) rewardsReturnScroll = window.scrollY;
   showingRewards = true;
   renderRewards();
@@ -172,22 +195,25 @@ function nextLabel() {
 function feedback(q) {
   if (session.result === 'correct') return `${icon('star')} מצוין! תשובה נכונה וכוכב נוסף`;
   if (session.result === 'second') return `${icon('star')} הצלחת בניסיון השני! קיבלת כוכב. נחזק את המילה בהמשך.`;
-  if (session.result === 'retry') return 'עוד לא, אבל יש עוד ניסיון! היעזרו בתמונה ובחרו שוב.';
+  if (session.result === 'retry') return 'עוד לא, אבל יש עוד ניסיון! הקשיבו למילה ובחרו שוב.';
   if (session.result === 'revealed') return `לומדים וממשיכים. התשובה הנכונה: <strong>${esc(q.meaning)}</strong>`;
   return '';
 }
 function choose(index) {
   if (!session || session.finished || !choices[index]) return;
-  if (answerQuestion(session, progress, current(), choices[index])) { save(); renderQuestion(); if (session.done) app.querySelector('.next').focus({ preventScroll: true }); }
+  if (answerQuestion(session, progress, current(), choices[index])) { void pronunciation.play(pronunciationSource(current())); save(); renderQuestion(); if (session.done) app.querySelector('.next').focus({ preventScroll: true }); }
 }
 function next() {
   if (!session?.done) return;
+  pronunciation.stop();
   advanceSession(session);
   save();
   if (session.finished) renderSummary();
   else { renderQuestion(true); window.scrollTo(0, 0); }
 }
 function renderSummary() {
+  pronunciation.stop();
+  pronunciation.prepare([]);
   prepareAnswerImages([]);
   answerPlans.clear();
   const t = topic(), s = topicStats(t, progress), review = session.mode === 'review';
@@ -208,7 +234,7 @@ function renderSummary() {
 function showHelp() {
   const dialog = document.createElement('dialog');
   dialog.className = 'help-dialog';
-  dialog.innerHTML = `<form method="dialog"><button class="close-dialog" aria-label="סגירה">${icon('close')}</button></form><span class="eyebrow">פשוט מתחילים</span><h2>כך משחקים במסע המילים</h2><ol><li>בוחרים נושא וקוראים את המילה או הביטוי באנגלית.</li><li>בוחרים פירוש בעברית. אחרי הבחירה האיור מתגלה.</li><li>טעיתם? יש ניסיון נוסף. אחרי שתי טעויות מתגלה התשובה.</li><li>כל תשובה נכונה מזכה בכוכב, גם בניסיון השני.</li><li>שאלה שטעינו בה צריכה 3 הצלחות בניסיון הראשון כדי להתנקות. טעות נוספת מאפסת את הספירה שלה.</li></ol><p>אחרי נושא עושים לכל היותר סבב חיזוק אחד, ובו כל שאלה מופיעה פעם אחת. אחר כך בוחרים נושא אחר או חוזרים לרשימה. ההצלחות לניקוי מצטברות בין ביקורים. בנושא עם טעויות מתרגלים רק אותן. סימן חזרה מציין שאלות לניקוי; וי מציין נושא שנלמד ונוקה לגמרי.</p><p class="quiet-note">ההתקדמות נשמרת בדפדפן ובמכשיר הזה. אפשר לצאת באמצע; נמשיך מהמקום המתאים כשנחזור.</p><form method="dialog"><button class="button primary">מוכנים, מתחילים!</button></form>`;
+  dialog.innerHTML = `<form method="dialog"><button class="close-dialog" aria-label="סגירה">${icon('close')}</button></form><span class="eyebrow">פשוט מתחילים</span><h2>כך משחקים במסע המילים</h2><ol><li>בוחרים נושא וקוראים את המילה או הביטוי באנגלית.</li><li>בוחרים פירוש בעברית ושומעים את המילה באנגלית.</li><li>טעיתם? במקום איור מופיע כפתור להשמעה חוזרת ויש ניסיון נוסף. אחרי שתי טעויות מתגלה התשובה.</li><li>כל תשובה נכונה מזכה בכוכב, גם בניסיון השני.</li><li>שאלה שטעינו בה צריכה 3 הצלחות בניסיון הראשון כדי להתנקות. טעות נוספת מאפסת את הספירה שלה.</li></ol><p>אחרי נושא עושים לכל היותר סבב חיזוק אחד, ובו כל שאלה מופיעה פעם אחת. אחר כך בוחרים נושא אחר או חוזרים לרשימה. ההצלחות לניקוי מצטברות בין ביקורים. בנושא עם טעויות מתרגלים רק אותן. סימן חזרה מציין שאלות לניקוי; וי מציין נושא שנלמד ונוקה לגמרי.</p><p class="quiet-note">הקריינות נוצרה ב־AI בקולות Marin ו־Cedar. ההתקדמות נשמרת בדפדפן ובמכשיר הזה. אפשר לצאת באמצע; נמשיך מהמקום המתאים כשנחזור.</p><form method="dialog"><button class="button primary">מוכנים, מתחילים!</button></form>`;
   document.body.append(dialog); dialog.addEventListener('close', () => dialog.remove()); dialog.showModal();
 }
 document.addEventListener('keydown', event => {

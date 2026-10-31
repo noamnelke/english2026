@@ -1,0 +1,1572 @@
+{
+  "model": "gpt-4o-mini-tts-2025-12-15",
+  "instructions": "Read the English vocabulary item exactly once, naturally and clearly, as a friendly teacher. Use a General American accent, an even speaking pace, and a clean neutral tone. Start speaking immediately. Say only the script, then finish after the final word.",
+  "clips": [
+    {
+      "id": "topic-01-01",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "boy",
+      "file": "topic-01-01.mp3"
+    },
+    {
+      "id": "topic-01-02",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "girl",
+      "file": "topic-01-02.mp3"
+    },
+    {
+      "id": "topic-01-03",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "mom",
+      "file": "topic-01-03.mp3"
+    },
+    {
+      "id": "topic-01-04",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "dad",
+      "file": "topic-01-04.mp3"
+    },
+    {
+      "id": "topic-01-05",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "baby",
+      "file": "topic-01-05.mp3"
+    },
+    {
+      "id": "topic-01-06",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "man",
+      "file": "topic-01-06.mp3"
+    },
+    {
+      "id": "topic-01-07",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "woman",
+      "file": "topic-01-07.mp3"
+    },
+    {
+      "id": "topic-01-08",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "sister",
+      "file": "topic-01-08.mp3"
+    },
+    {
+      "id": "topic-01-09",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "brother",
+      "file": "topic-01-09.mp3"
+    },
+    {
+      "id": "topic-01-10",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "grandma",
+      "file": "topic-01-10.mp3"
+    },
+    {
+      "id": "topic-01-11",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "grandpa",
+      "file": "topic-01-11.mp3"
+    },
+    {
+      "id": "topic-01-12",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "family",
+      "file": "topic-01-12.mp3"
+    },
+    {
+      "id": "topic-01-13",
+      "topic": "topic-01",
+      "voice": "marin",
+      "text": "kid",
+      "file": "topic-01-13.mp3"
+    },
+    {
+      "id": "topic-02-01",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "house",
+      "file": "topic-02-01.mp3"
+    },
+    {
+      "id": "topic-02-02",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "bed",
+      "file": "topic-02-02.mp3"
+    },
+    {
+      "id": "topic-02-03",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "table",
+      "file": "topic-02-03.mp3"
+    },
+    {
+      "id": "topic-02-04",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "picture",
+      "file": "topic-02-04.mp3"
+    },
+    {
+      "id": "topic-02-05",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "sofa",
+      "file": "topic-02-05.mp3"
+    },
+    {
+      "id": "topic-02-06",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "living room",
+      "file": "topic-02-06.mp3"
+    },
+    {
+      "id": "topic-02-07",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "lamp",
+      "file": "topic-02-07.mp3"
+    },
+    {
+      "id": "topic-02-08",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "mat",
+      "file": "topic-02-08.mp3"
+    },
+    {
+      "id": "topic-02-09",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "floor",
+      "file": "topic-02-09.mp3"
+    },
+    {
+      "id": "topic-02-10",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "garden",
+      "file": "topic-02-10.mp3"
+    },
+    {
+      "id": "topic-02-11",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "kitchen",
+      "file": "topic-02-11.mp3"
+    },
+    {
+      "id": "topic-02-12",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "window",
+      "file": "topic-02-12.mp3"
+    },
+    {
+      "id": "topic-02-13",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "door",
+      "file": "topic-02-13.mp3"
+    },
+    {
+      "id": "topic-02-14",
+      "topic": "topic-02",
+      "voice": "cedar",
+      "text": "at home",
+      "file": "topic-02-14.mp3"
+    },
+    {
+      "id": "topic-03-01",
+      "topic": "topic-03",
+      "voice": "marin",
+      "text": "nose",
+      "file": "topic-03-01.mp3"
+    },
+    {
+      "id": "topic-03-02",
+      "topic": "topic-03",
+      "voice": "marin",
+      "text": "mouth",
+      "file": "topic-03-02.mp3"
+    },
+    {
+      "id": "topic-03-03",
+      "topic": "topic-03",
+      "voice": "marin",
+      "text": "hand",
+      "file": "topic-03-03.mp3"
+    },
+    {
+      "id": "topic-03-04",
+      "topic": "topic-03",
+      "voice": "marin",
+      "text": "leg",
+      "file": "topic-03-04.mp3"
+    },
+    {
+      "id": "topic-03-05",
+      "topic": "topic-03",
+      "voice": "marin",
+      "text": "foot",
+      "file": "topic-03-05.mp3"
+    },
+    {
+      "id": "topic-03-06",
+      "topic": "topic-03",
+      "voice": "marin",
+      "text": "eyes",
+      "file": "topic-03-06.mp3"
+    },
+    {
+      "id": "topic-03-07",
+      "topic": "topic-03",
+      "voice": "marin",
+      "text": "ears",
+      "file": "topic-03-07.mp3"
+    },
+    {
+      "id": "topic-03-08",
+      "topic": "topic-03",
+      "voice": "marin",
+      "text": "head",
+      "file": "topic-03-08.mp3"
+    },
+    {
+      "id": "topic-04-01",
+      "topic": "topic-04",
+      "voice": "cedar",
+      "text": "black",
+      "file": "topic-04-01.mp3"
+    },
+    {
+      "id": "topic-04-02",
+      "topic": "topic-04",
+      "voice": "cedar",
+      "text": "white",
+      "file": "topic-04-02.mp3"
+    },
+    {
+      "id": "topic-04-03",
+      "topic": "topic-04",
+      "voice": "cedar",
+      "text": "gray",
+      "file": "topic-04-03.mp3"
+    },
+    {
+      "id": "topic-04-04",
+      "topic": "topic-04",
+      "voice": "cedar",
+      "text": "red",
+      "file": "topic-04-04.mp3"
+    },
+    {
+      "id": "topic-04-05",
+      "topic": "topic-04",
+      "voice": "cedar",
+      "text": "blue",
+      "file": "topic-04-05.mp3"
+    },
+    {
+      "id": "topic-04-06",
+      "topic": "topic-04",
+      "voice": "cedar",
+      "text": "green",
+      "file": "topic-04-06.mp3"
+    },
+    {
+      "id": "topic-04-07",
+      "topic": "topic-04",
+      "voice": "cedar",
+      "text": "yellow",
+      "file": "topic-04-07.mp3"
+    },
+    {
+      "id": "topic-04-08",
+      "topic": "topic-04",
+      "voice": "cedar",
+      "text": "orange",
+      "file": "topic-04-08.mp3"
+    },
+    {
+      "id": "topic-04-09",
+      "topic": "topic-04",
+      "voice": "cedar",
+      "text": "brown",
+      "file": "topic-04-09.mp3"
+    },
+    {
+      "id": "topic-05-01",
+      "topic": "topic-05",
+      "voice": "marin",
+      "text": "apple",
+      "file": "topic-05-01.mp3"
+    },
+    {
+      "id": "topic-05-02",
+      "topic": "topic-05",
+      "voice": "marin",
+      "text": "egg",
+      "file": "topic-05-02.mp3"
+    },
+    {
+      "id": "topic-05-03",
+      "topic": "topic-05",
+      "voice": "marin",
+      "text": "milk",
+      "file": "topic-05-03.mp3"
+    },
+    {
+      "id": "topic-05-04",
+      "topic": "topic-05",
+      "voice": "marin",
+      "text": "carrot",
+      "file": "topic-05-04.mp3"
+    },
+    {
+      "id": "topic-05-05",
+      "topic": "topic-05",
+      "voice": "marin",
+      "text": "lunch",
+      "file": "topic-05-05.mp3"
+    },
+    {
+      "id": "topic-05-06",
+      "topic": "topic-05",
+      "voice": "marin",
+      "text": "juice",
+      "file": "topic-05-06.mp3"
+    },
+    {
+      "id": "topic-05-07",
+      "topic": "topic-05",
+      "voice": "marin",
+      "text": "cookie",
+      "file": "topic-05-07.mp3"
+    },
+    {
+      "id": "topic-05-08",
+      "topic": "topic-05",
+      "voice": "marin",
+      "text": "chicken",
+      "file": "topic-05-08.mp3"
+    },
+    {
+      "id": "topic-05-09",
+      "topic": "topic-05",
+      "voice": "marin",
+      "text": "ice cream",
+      "file": "topic-05-09.mp3"
+    },
+    {
+      "id": "topic-05-10",
+      "topic": "topic-05",
+      "voice": "marin",
+      "text": "candy",
+      "file": "topic-05-10.mp3"
+    },
+    {
+      "id": "topic-05-11",
+      "topic": "topic-05",
+      "voice": "marin",
+      "text": "cake",
+      "file": "topic-05-11.mp3"
+    },
+    {
+      "id": "topic-06-01",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "zero",
+      "file": "topic-06-01.mp3"
+    },
+    {
+      "id": "topic-06-02",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "one",
+      "file": "topic-06-02.mp3"
+    },
+    {
+      "id": "topic-06-03",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "two",
+      "file": "topic-06-03.mp3"
+    },
+    {
+      "id": "topic-06-04",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "three",
+      "file": "topic-06-04.mp3"
+    },
+    {
+      "id": "topic-06-05",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "four",
+      "file": "topic-06-05.mp3"
+    },
+    {
+      "id": "topic-06-06",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "five",
+      "file": "topic-06-06.mp3"
+    },
+    {
+      "id": "topic-06-07",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "six",
+      "file": "topic-06-07.mp3"
+    },
+    {
+      "id": "topic-06-08",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "seven",
+      "file": "topic-06-08.mp3"
+    },
+    {
+      "id": "topic-06-09",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "eight",
+      "file": "topic-06-09.mp3"
+    },
+    {
+      "id": "topic-06-10",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "nine",
+      "file": "topic-06-10.mp3"
+    },
+    {
+      "id": "topic-06-11",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "ten",
+      "file": "topic-06-11.mp3"
+    },
+    {
+      "id": "topic-06-12",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "eleven",
+      "file": "topic-06-12.mp3"
+    },
+    {
+      "id": "topic-06-13",
+      "topic": "topic-06",
+      "voice": "cedar",
+      "text": "twelve",
+      "file": "topic-06-13.mp3"
+    },
+    {
+      "id": "topic-07-01",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "dog",
+      "file": "topic-07-01.mp3"
+    },
+    {
+      "id": "topic-07-02",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "cat",
+      "file": "topic-07-02.mp3"
+    },
+    {
+      "id": "topic-07-03",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "duck",
+      "file": "topic-07-03.mp3"
+    },
+    {
+      "id": "topic-07-04",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "hen",
+      "file": "topic-07-04.mp3"
+    },
+    {
+      "id": "topic-07-05",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "horse",
+      "file": "topic-07-05.mp3"
+    },
+    {
+      "id": "topic-07-06",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "rabbit",
+      "file": "topic-07-06.mp3"
+    },
+    {
+      "id": "topic-07-07",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "elephant",
+      "file": "topic-07-07.mp3"
+    },
+    {
+      "id": "topic-07-08",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "mouse",
+      "file": "topic-07-08.mp3"
+    },
+    {
+      "id": "topic-07-09",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "sheep",
+      "file": "topic-07-09.mp3"
+    },
+    {
+      "id": "topic-07-10",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "cow",
+      "file": "topic-07-10.mp3"
+    },
+    {
+      "id": "topic-07-11",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "fish",
+      "file": "topic-07-11.mp3"
+    },
+    {
+      "id": "topic-07-12",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "pet",
+      "file": "topic-07-12.mp3"
+    },
+    {
+      "id": "topic-07-13",
+      "topic": "topic-07",
+      "voice": "marin",
+      "text": "monkey",
+      "file": "topic-07-13.mp3"
+    },
+    {
+      "id": "topic-08-01",
+      "topic": "topic-08",
+      "voice": "cedar",
+      "text": "car",
+      "file": "topic-08-01.mp3"
+    },
+    {
+      "id": "topic-08-02",
+      "topic": "topic-08",
+      "voice": "cedar",
+      "text": "tree",
+      "file": "topic-08-02.mp3"
+    },
+    {
+      "id": "topic-08-03",
+      "topic": "topic-08",
+      "voice": "cedar",
+      "text": "water",
+      "file": "topic-08-03.mp3"
+    },
+    {
+      "id": "topic-08-04",
+      "topic": "topic-08",
+      "voice": "cedar",
+      "text": "umbrella",
+      "file": "topic-08-04.mp3"
+    },
+    {
+      "id": "topic-08-05",
+      "topic": "topic-08",
+      "voice": "cedar",
+      "text": "van",
+      "file": "topic-08-05.mp3"
+    },
+    {
+      "id": "topic-08-06",
+      "topic": "topic-08",
+      "voice": "cedar",
+      "text": "sun",
+      "file": "topic-08-06.mp3"
+    },
+    {
+      "id": "topic-08-07",
+      "topic": "topic-08",
+      "voice": "cedar",
+      "text": "farm",
+      "file": "topic-08-07.mp3"
+    },
+    {
+      "id": "topic-08-08",
+      "topic": "topic-08",
+      "voice": "cedar",
+      "text": "zoo",
+      "file": "topic-08-08.mp3"
+    },
+    {
+      "id": "topic-09-01",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "bag",
+      "file": "topic-09-01.mp3"
+    },
+    {
+      "id": "topic-09-02",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "book",
+      "file": "topic-09-02.mp3"
+    },
+    {
+      "id": "topic-09-03",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "pupil",
+      "file": "topic-09-03.mp3"
+    },
+    {
+      "id": "topic-09-04",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "eraser",
+      "file": "topic-09-04.mp3"
+    },
+    {
+      "id": "topic-09-05",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "chair",
+      "file": "topic-09-05.mp3"
+    },
+    {
+      "id": "topic-09-06",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "notebook",
+      "file": "topic-09-06.mp3"
+    },
+    {
+      "id": "topic-09-07",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "pencil",
+      "file": "topic-09-07.mp3"
+    },
+    {
+      "id": "topic-09-08",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "test",
+      "file": "topic-09-08.mp3"
+    },
+    {
+      "id": "topic-09-09",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "teacher",
+      "file": "topic-09-09.mp3"
+    },
+    {
+      "id": "topic-09-10",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "pen",
+      "file": "topic-09-10.mp3"
+    },
+    {
+      "id": "topic-09-11",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "pencil case",
+      "file": "topic-09-11.mp3"
+    },
+    {
+      "id": "topic-09-12",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "school",
+      "file": "topic-09-12.mp3"
+    },
+    {
+      "id": "topic-09-13",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "plus",
+      "file": "topic-09-13.mp3"
+    },
+    {
+      "id": "topic-09-14",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "computer",
+      "file": "topic-09-14.mp3"
+    },
+    {
+      "id": "topic-09-15",
+      "topic": "topic-09",
+      "voice": "marin",
+      "text": "desk",
+      "file": "topic-09-15.mp3"
+    },
+    {
+      "id": "topic-10-01",
+      "topic": "topic-10",
+      "voice": "cedar",
+      "text": "box",
+      "file": "topic-10-01.mp3"
+    },
+    {
+      "id": "topic-10-02",
+      "topic": "topic-10",
+      "voice": "cedar",
+      "text": "hat",
+      "file": "topic-10-02.mp3"
+    },
+    {
+      "id": "topic-10-03",
+      "topic": "topic-10",
+      "voice": "cedar",
+      "text": "king",
+      "file": "topic-10-03.mp3"
+    },
+    {
+      "id": "topic-10-04",
+      "topic": "topic-10",
+      "voice": "cedar",
+      "text": "queen",
+      "file": "topic-10-04.mp3"
+    },
+    {
+      "id": "topic-10-05",
+      "topic": "topic-10",
+      "voice": "cedar",
+      "text": "ball",
+      "file": "topic-10-05.mp3"
+    },
+    {
+      "id": "topic-10-06",
+      "topic": "topic-10",
+      "voice": "cedar",
+      "text": "friend",
+      "file": "topic-10-06.mp3"
+    },
+    {
+      "id": "topic-10-07",
+      "topic": "topic-10",
+      "voice": "cedar",
+      "text": "job",
+      "file": "topic-10-07.mp3"
+    },
+    {
+      "id": "topic-10-08",
+      "topic": "topic-10",
+      "voice": "cedar",
+      "text": "game",
+      "file": "topic-10-08.mp3"
+    },
+    {
+      "id": "topic-10-09",
+      "topic": "topic-10",
+      "voice": "cedar",
+      "text": "magic",
+      "file": "topic-10-09.mp3"
+    },
+    {
+      "id": "topic-11-01",
+      "topic": "topic-11",
+      "voice": "marin",
+      "text": "gift",
+      "file": "topic-11-01.mp3"
+    },
+    {
+      "id": "topic-11-02",
+      "topic": "topic-11",
+      "voice": "marin",
+      "text": "birthday",
+      "file": "topic-11-02.mp3"
+    },
+    {
+      "id": "topic-11-03",
+      "topic": "topic-11",
+      "voice": "marin",
+      "text": "card",
+      "file": "topic-11-03.mp3"
+    },
+    {
+      "id": "topic-11-04",
+      "topic": "topic-11",
+      "voice": "marin",
+      "text": "party",
+      "file": "topic-11-04.mp3"
+    },
+    {
+      "id": "topic-11-05",
+      "topic": "topic-11",
+      "voice": "marin",
+      "text": "Happy birthday",
+      "file": "topic-11-05.mp3"
+    },
+    {
+      "id": "topic-12-01",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "help",
+      "file": "topic-12-01.mp3"
+    },
+    {
+      "id": "topic-12-02",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "add",
+      "file": "topic-12-02.mp3"
+    },
+    {
+      "id": "topic-12-03",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "play",
+      "file": "topic-12-03.mp3"
+    },
+    {
+      "id": "topic-12-04",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "play",
+      "file": "topic-12-04.mp3"
+    },
+    {
+      "id": "topic-12-05",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "run",
+      "file": "topic-12-05.mp3"
+    },
+    {
+      "id": "topic-12-06",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "rest",
+      "file": "topic-12-06.mp3"
+    },
+    {
+      "id": "topic-12-07",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "ask",
+      "file": "topic-12-07.mp3"
+    },
+    {
+      "id": "topic-12-08",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "sing",
+      "file": "topic-12-08.mp3"
+    },
+    {
+      "id": "topic-12-09",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "plan",
+      "file": "topic-12-09.mp3"
+    },
+    {
+      "id": "topic-12-10",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "eat",
+      "file": "topic-12-10.mp3"
+    },
+    {
+      "id": "topic-12-11",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "swim",
+      "file": "topic-12-11.mp3"
+    },
+    {
+      "id": "topic-12-12",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "jump",
+      "file": "topic-12-12.mp3"
+    },
+    {
+      "id": "topic-12-13",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "cut",
+      "file": "topic-12-13.mp3"
+    },
+    {
+      "id": "topic-12-14",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "talk",
+      "file": "topic-12-14.mp3"
+    },
+    {
+      "id": "topic-12-15",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "Look",
+      "file": "topic-12-15.mp3"
+    },
+    {
+      "id": "topic-12-16",
+      "topic": "topic-12",
+      "voice": "cedar",
+      "text": "put",
+      "file": "topic-12-16.mp3"
+    },
+    {
+      "id": "topic-13-01",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "sad",
+      "file": "topic-13-01.mp3"
+    },
+    {
+      "id": "topic-13-02",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "bad",
+      "file": "topic-13-02.mp3"
+    },
+    {
+      "id": "topic-13-03",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "good",
+      "file": "topic-13-03.mp3"
+    },
+    {
+      "id": "topic-13-04",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "best",
+      "file": "topic-13-04.mp3"
+    },
+    {
+      "id": "topic-13-05",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "happy",
+      "file": "topic-13-05.mp3"
+    },
+    {
+      "id": "topic-13-06",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "hot",
+      "file": "topic-13-06.mp3"
+    },
+    {
+      "id": "topic-13-07",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "cold",
+      "file": "topic-13-07.mp3"
+    },
+    {
+      "id": "topic-13-08",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "soft",
+      "file": "topic-13-08.mp3"
+    },
+    {
+      "id": "topic-13-09",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "fun",
+      "file": "topic-13-09.mp3"
+    },
+    {
+      "id": "topic-13-10",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "mad",
+      "file": "topic-13-10.mp3"
+    },
+    {
+      "id": "topic-13-11",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "hungry",
+      "file": "topic-13-11.mp3"
+    },
+    {
+      "id": "topic-13-12",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "glad",
+      "file": "topic-13-12.mp3"
+    },
+    {
+      "id": "topic-13-13",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "quiet",
+      "file": "topic-13-13.mp3"
+    },
+    {
+      "id": "topic-13-14",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "great",
+      "file": "topic-13-14.mp3"
+    },
+    {
+      "id": "topic-13-15",
+      "topic": "topic-13",
+      "voice": "marin",
+      "text": "lost",
+      "file": "topic-13-15.mp3"
+    },
+    {
+      "id": "topic-14-01",
+      "topic": "topic-14",
+      "voice": "cedar",
+      "text": "big",
+      "file": "topic-14-01.mp3"
+    },
+    {
+      "id": "topic-14-02",
+      "topic": "topic-14",
+      "voice": "cedar",
+      "text": "small",
+      "file": "topic-14-02.mp3"
+    },
+    {
+      "id": "topic-14-03",
+      "topic": "topic-14",
+      "voice": "cedar",
+      "text": "tall",
+      "file": "topic-14-03.mp3"
+    },
+    {
+      "id": "topic-14-04",
+      "topic": "topic-14",
+      "voice": "cedar",
+      "text": "fast",
+      "file": "topic-14-04.mp3"
+    },
+    {
+      "id": "topic-14-05",
+      "topic": "topic-14",
+      "voice": "cedar",
+      "text": "long",
+      "file": "topic-14-05.mp3"
+    },
+    {
+      "id": "topic-14-06",
+      "topic": "topic-14",
+      "voice": "cedar",
+      "text": "sunny",
+      "file": "topic-14-06.mp3"
+    },
+    {
+      "id": "topic-15-01",
+      "topic": "topic-15",
+      "voice": "marin",
+      "text": "in",
+      "file": "topic-15-01.mp3"
+    },
+    {
+      "id": "topic-15-02",
+      "topic": "topic-15",
+      "voice": "marin",
+      "text": "on",
+      "file": "topic-15-02.mp3"
+    },
+    {
+      "id": "topic-15-03",
+      "topic": "topic-15",
+      "voice": "marin",
+      "text": "under",
+      "file": "topic-15-03.mp3"
+    },
+    {
+      "id": "topic-15-04",
+      "topic": "topic-15",
+      "voice": "marin",
+      "text": "top",
+      "file": "topic-15-04.mp3"
+    },
+    {
+      "id": "topic-15-05",
+      "topic": "topic-15",
+      "voice": "marin",
+      "text": "now",
+      "file": "topic-15-05.mp3"
+    },
+    {
+      "id": "topic-15-06",
+      "topic": "topic-15",
+      "voice": "marin",
+      "text": "The",
+      "file": "topic-15-06.mp3"
+    },
+    {
+      "id": "topic-15-07",
+      "topic": "topic-15",
+      "voice": "marin",
+      "text": "And",
+      "file": "topic-15-07.mp3"
+    },
+    {
+      "id": "topic-15-08",
+      "topic": "topic-15",
+      "voice": "marin",
+      "text": "but",
+      "file": "topic-15-08.mp3"
+    },
+    {
+      "id": "topic-16-01",
+      "topic": "topic-16",
+      "voice": "cedar",
+      "text": "I",
+      "file": "topic-16-01.mp3"
+    },
+    {
+      "id": "topic-16-02",
+      "topic": "topic-16",
+      "voice": "cedar",
+      "text": "You",
+      "file": "topic-16-02.mp3"
+    },
+    {
+      "id": "topic-16-03",
+      "topic": "topic-16",
+      "voice": "cedar",
+      "text": "He",
+      "file": "topic-16-03.mp3"
+    },
+    {
+      "id": "topic-16-04",
+      "topic": "topic-16",
+      "voice": "cedar",
+      "text": "She",
+      "file": "topic-16-04.mp3"
+    },
+    {
+      "id": "topic-16-05",
+      "topic": "topic-16",
+      "voice": "cedar",
+      "text": "they",
+      "file": "topic-16-05.mp3"
+    },
+    {
+      "id": "topic-16-06",
+      "topic": "topic-16",
+      "voice": "cedar",
+      "text": "My",
+      "file": "topic-16-06.mp3"
+    },
+    {
+      "id": "topic-16-07",
+      "topic": "topic-16",
+      "voice": "cedar",
+      "text": "Me",
+      "file": "topic-16-07.mp3"
+    },
+    {
+      "id": "topic-17-01",
+      "topic": "topic-17",
+      "voice": "marin",
+      "text": "I want",
+      "file": "topic-17-01.mp3"
+    },
+    {
+      "id": "topic-17-02",
+      "topic": "topic-17",
+      "voice": "marin",
+      "text": "I have",
+      "file": "topic-17-02.mp3"
+    },
+    {
+      "id": "topic-17-03",
+      "topic": "topic-17",
+      "voice": "marin",
+      "text": "I can",
+      "file": "topic-17-03.mp3"
+    },
+    {
+      "id": "topic-17-04",
+      "topic": "topic-17",
+      "voice": "marin",
+      "text": "He has",
+      "file": "topic-17-04.mp3"
+    },
+    {
+      "id": "topic-17-05",
+      "topic": "topic-17",
+      "voice": "marin",
+      "text": "He is",
+      "file": "topic-17-05.mp3"
+    },
+    {
+      "id": "topic-17-06",
+      "topic": "topic-17",
+      "voice": "marin",
+      "text": "I like",
+      "file": "topic-17-06.mp3"
+    },
+    {
+      "id": "topic-17-07",
+      "topic": "topic-17",
+      "voice": "marin",
+      "text": "I don't like",
+      "file": "topic-17-07.mp3"
+    },
+    {
+      "id": "topic-17-08",
+      "topic": "topic-17",
+      "voice": "marin",
+      "text": "She has",
+      "file": "topic-17-08.mp3"
+    },
+    {
+      "id": "topic-17-09",
+      "topic": "topic-17",
+      "voice": "marin",
+      "text": "She is",
+      "file": "topic-17-09.mp3"
+    },
+    {
+      "id": "topic-17-10",
+      "topic": "topic-17",
+      "voice": "marin",
+      "text": "I am",
+      "file": "topic-17-10.mp3"
+    },
+    {
+      "id": "topic-18-01",
+      "topic": "topic-18",
+      "voice": "cedar",
+      "text": "Hello",
+      "file": "topic-18-01.mp3"
+    },
+    {
+      "id": "topic-18-02",
+      "topic": "topic-18",
+      "voice": "cedar",
+      "text": "What's your name?",
+      "file": "topic-18-02.mp3"
+    },
+    {
+      "id": "topic-18-03",
+      "topic": "topic-18",
+      "voice": "cedar",
+      "text": "My name is",
+      "file": "topic-18-03.mp3"
+    },
+    {
+      "id": "topic-18-04",
+      "topic": "topic-18",
+      "voice": "cedar",
+      "text": "How are you?",
+      "file": "topic-18-04.mp3"
+    },
+    {
+      "id": "topic-18-05",
+      "topic": "topic-18",
+      "voice": "cedar",
+      "text": "I'm fine, thank you.",
+      "file": "topic-18-05.mp3"
+    },
+    {
+      "id": "topic-18-06",
+      "topic": "topic-18",
+      "voice": "cedar",
+      "text": "Thank you",
+      "file": "topic-18-06.mp3"
+    },
+    {
+      "id": "topic-18-07",
+      "topic": "topic-18",
+      "voice": "cedar",
+      "text": "You're welcome",
+      "file": "topic-18-07.mp3"
+    },
+    {
+      "id": "topic-18-08",
+      "topic": "topic-18",
+      "voice": "cedar",
+      "text": "Good morning",
+      "file": "topic-18-08.mp3"
+    },
+    {
+      "id": "topic-18-09",
+      "topic": "topic-18",
+      "voice": "cedar",
+      "text": "Goodbye",
+      "file": "topic-18-09.mp3"
+    },
+    {
+      "id": "topic-18-10",
+      "topic": "topic-18",
+      "voice": "cedar",
+      "text": "Yes",
+      "file": "topic-18-10.mp3"
+    },
+    {
+      "id": "topic-18-11",
+      "topic": "topic-18",
+      "voice": "cedar",
+      "text": "No",
+      "file": "topic-18-11.mp3"
+    },
+    {
+      "id": "topic-18-12",
+      "topic": "topic-18",
+      "voice": "cedar",
+      "text": "Please",
+      "file": "topic-18-12.mp3"
+    },
+    {
+      "id": "topic-19-01",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "What is it?",
+      "file": "topic-19-01.mp3"
+    },
+    {
+      "id": "topic-19-02",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "It's a",
+      "file": "topic-19-02.mp3"
+    },
+    {
+      "id": "topic-19-03",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "Where are you?",
+      "file": "topic-19-03.mp3"
+    },
+    {
+      "id": "topic-19-04",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "Look!",
+      "file": "topic-19-04.mp3"
+    },
+    {
+      "id": "topic-19-05",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "What do you see?",
+      "file": "topic-19-05.mp3"
+    },
+    {
+      "id": "topic-19-06",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "I see",
+      "file": "topic-19-06.mp3"
+    },
+    {
+      "id": "topic-19-07",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "This is my",
+      "file": "topic-19-07.mp3"
+    },
+    {
+      "id": "topic-19-08",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "Where's?",
+      "file": "topic-19-08.mp3"
+    },
+    {
+      "id": "topic-19-09",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "It's in",
+      "file": "topic-19-09.mp3"
+    },
+    {
+      "id": "topic-19-10",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "It's on",
+      "file": "topic-19-10.mp3"
+    },
+    {
+      "id": "topic-19-11",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "What's this?",
+      "file": "topic-19-11.mp3"
+    },
+    {
+      "id": "topic-19-12",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "This is a",
+      "file": "topic-19-12.mp3"
+    },
+    {
+      "id": "topic-19-13",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "It has",
+      "file": "topic-19-13.mp3"
+    },
+    {
+      "id": "topic-19-14",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "It's near",
+      "file": "topic-19-14.mp3"
+    },
+    {
+      "id": "topic-19-15",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "It's not",
+      "file": "topic-19-15.mp3"
+    },
+    {
+      "id": "topic-19-16",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "There's a",
+      "file": "topic-19-16.mp3"
+    },
+    {
+      "id": "topic-19-17",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "Who is?",
+      "file": "topic-19-17.mp3"
+    },
+    {
+      "id": "topic-19-18",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "That's",
+      "file": "topic-19-18.mp3"
+    },
+    {
+      "id": "topic-19-19",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "Who has?",
+      "file": "topic-19-19.mp3"
+    },
+    {
+      "id": "topic-19-20",
+      "topic": "topic-19",
+      "voice": "marin",
+      "text": "What's in the?",
+      "file": "topic-19-20.mp3"
+    },
+    {
+      "id": "topic-20-01",
+      "topic": "topic-20",
+      "voice": "cedar",
+      "text": "Open the",
+      "file": "topic-20-01.mp3"
+    },
+    {
+      "id": "topic-20-02",
+      "topic": "topic-20",
+      "voice": "cedar",
+      "text": "Close the",
+      "file": "topic-20-02.mp3"
+    },
+    {
+      "id": "topic-20-03",
+      "topic": "topic-20",
+      "voice": "cedar",
+      "text": "Let's go to",
+      "file": "topic-20-03.mp3"
+    },
+    {
+      "id": "topic-20-04",
+      "topic": "topic-20",
+      "voice": "cedar",
+      "text": "Stand up",
+      "file": "topic-20-04.mp3"
+    },
+    {
+      "id": "topic-20-05",
+      "topic": "topic-20",
+      "voice": "cedar",
+      "text": "Sit down",
+      "file": "topic-20-05.mp3"
+    },
+    {
+      "id": "topic-20-06",
+      "topic": "topic-20",
+      "voice": "cedar",
+      "text": "Stop!",
+      "file": "topic-20-06.mp3"
+    },
+    {
+      "id": "topic-20-07",
+      "topic": "topic-20",
+      "voice": "cedar",
+      "text": "Come and see",
+      "file": "topic-20-07.mp3"
+    },
+    {
+      "id": "topic-20-08",
+      "topic": "topic-20",
+      "voice": "cedar",
+      "text": "Play a game",
+      "file": "topic-20-08.mp3"
+    },
+    {
+      "id": "topic-20-09",
+      "topic": "topic-20",
+      "voice": "cedar",
+      "text": "Go on a trip",
+      "file": "topic-20-09.mp3"
+    },
+    {
+      "id": "topic-21-01",
+      "topic": "topic-21",
+      "voice": "marin",
+      "text": "How's the weather?",
+      "file": "topic-21-01.mp3"
+    },
+    {
+      "id": "topic-21-02",
+      "topic": "topic-21",
+      "voice": "marin",
+      "text": "It's hot and sunny",
+      "file": "topic-21-02.mp3"
+    }
+  ],
+  "processing": {
+    "silencePaddingBeforeSeconds": 0.08,
+    "silencePaddingAfterSeconds": 0.14,
+    "peakTarget": 0.78
+  }
+}

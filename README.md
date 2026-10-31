@@ -20,7 +20,7 @@ npm test
 ## Practice rules
 
 - Pick a topic. Translate the English word/phrase into Hebrew using four answer choices.
-- The illustration is absent until the first answer is selected. It appears after either a right or wrong answer.
+- Every answer plays the English prompt. The central illustration appears only after a correct answer; a wrong answer shows a pronunciation replay button instead.
 - A first mistake gives a second attempt; two mistakes reveal the correct answer.
 - Each correct answer earns one star, including a second-attempt answer. Revealed answers earn none.
 - Any mistake marks that question for cleanup. It needs **three first-attempt correct answers** on separate presentations. A new mistake resets that question's count to zero. A correct second attempt earns a star but no cleanup credit.
@@ -48,5 +48,13 @@ The streak animation grows through five levels at 2, 4, 6, 8 and 10 correct answ
 - `public/images/`: 171 WebP illustrations exported from the generated booklet art.
 - `scripts/`: static build and local HTTP preview, using Node standard modules.
 - `.openai/hosting.json`: Sites hosting identity and static output configuration.
+
+## Recorded pronunciation
+
+- Every topic has one stable voice: odd topic IDs use Marin, even IDs use Cedar. All recordings use the same calm, clear American English teaching style.
+- Choosing any answer plays the English prompt. After a wrong choice, a replay button replaces the central illustration; pictures appear only on a correct answer (including a correct retry). After two mistakes, the correct meaning is still revealed in the feedback.
+- The current and next MP3 are preloaded without autoplay. A new playback stops and rewinds the previous one; leaving the question, opening stats or finishing a pass stops audio. Playback failures stay retryable and never block answering.
+- Recordings are generated once into `public/audio/`. The published app is static, needs no API key and makes no OpenAI API requests. `.env.local` and other `.env` files are ignored and never included in the build.
+- Regenerate missing recordings locally with `node --env-file=.env.local scripts/generate-audio.mjs`. `--dry-run` lists the plan without using an API key. The catalog records each clip's topic, voice and spoken text; capitalization alternatives and unfinished placeholders are omitted in speech. `scripts/process-audio.mjs` uses a local FFmpeg (`FFMPEG_BIN` or the command on PATH) to remove unwanted extra utterances and leading/trailing silence, retain a short natural padding, and match peak levels.
 
 Source documents, parent letters, and learner progress are not included in this repository. Vocabulary and AI-generated art are included for this learning app.

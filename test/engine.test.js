@@ -29,7 +29,7 @@ test('images are hidden first; one correct answer earns exactly one star', () =>
   assert.equal(answerQuestion(s, p, tiny.items[0], 'חתול'), false);
   assert.equal(p.stars, 1);
 });
-test('first mistake reveals art, leaves a retry, and creates cleanup debt; second success earns a star but no cleanup credit', () => {
+test('first mistake marks the prompt as answered, leaves a retry, and creates cleanup debt; second success earns a star but no cleanup credit', () => {
   const p = blankProgress(), s = startSession(tiny, p, fixed), q = tiny.items[0];
   answerQuestion(s, p, q, 'כלב');
   assert.equal(s.reveal, true); assert.equal(s.done, false); assert.equal(s.result, 'retry');
